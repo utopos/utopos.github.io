@@ -1,6 +1,6 @@
 ---
 title: "How to report Postgres custom errors in Ecto Changeset"
-pubDatetime: 2024-07-04T17:32:19.895Z
+pubDatetime: 2022-01-10T13:43:38.000Z
 featured: false
 draft: false
 tags:
