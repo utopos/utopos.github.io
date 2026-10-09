@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
 import PostLayout from "@/layouts/PostLayout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
@@ -94,6 +95,10 @@ if (!ogImageUrl && config.features.dynamicOgImage) {
 const ogImage = ogImageUrl
   ? new URL(ogImageUrl, Astro.url.origin).href
   : undefined;
+
+// Local (imported) OG images double as the cover banner shown above the title.
+const coverImage =
+  initOgImage && typeof initOgImage !== "string" ? initOgImage : undefined;
 ---
 
 <PostLayout
@@ -113,6 +118,20 @@ const ogImage = ogImageUrl
     class:list={["app-layout", { "mt-8": !config.features.showBackButton }]}
     data-pagefind-body
   >
+    {
+      coverImage && (
+        <Image
+          src={coverImage}
+          alt=""
+          widths={[640, 1000, coverImage.width]}
+          sizes="(min-width: 768px) 768px, 100vw"
+          loading="eager"
+          fetchpriority="high"
+          class="mb-6 aspect-[2.38/1] w-full rounded-md object-cover"
+        />
+      )
+    }
+
     <h1
       style={{ viewTransitionName: toTransitionName(post.id) }}
       class="text-accent inline-block text-2xl font-bold sm:text-3xl"
