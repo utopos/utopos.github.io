@@ -34,6 +34,45 @@
   @apply underline decoration-wavy decoration-2 underline-offset-8;
 }
 
+/* Post titles */
+#main-content > h1 {
+  @apply font-black tracking-tight;
+}
+
+/*
+ * Main headings: uppercase ink text over a gold bar tilted by -3deg
+ * (inspired by swingdancewroclaw.pl). Apply to an inline element: the
+ * bar is a per-line background, so it survives line wrapping.
+ */
+@utility title-highlight {
+  @apply text-title-ink -mx-1.5 px-1.5 leading-[1.25] font-black tracking-[0.5px] uppercase;
+  background-image: linear-gradient(
+    177deg,
+    transparent calc(50% - 0.425em),
+    var(--color-title-band) calc(50% - 0.425em),
+    var(--color-title-band) calc(50% + 0.425em),
+    transparent calc(50% + 0.425em)
+  );
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/*
+ * Post titles: highlighter stroke behind the lower part of each line.
+ * Apply to an inline element so every wrapped line gets its own stroke.
+ */
+@utility title-marker {
+  color: var(--marker-ink);
+  background-image: linear-gradient(
+    transparent 58%,
+    var(--marker) 58%,
+    var(--marker) 92%,
+    transparent 92%
+  );
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 :target {
   scroll-margin-block: 1rem;
 }

@@ -4,6 +4,9 @@
   /* ===== Override default Tailwind Typography styles ===== */
   .app-prose {
     @apply prose;
+    /* Slightly larger text for long-form reading. */
+    font-size: 1.0625rem;
+    line-height: 1.75;
 
     h1,
     h2,
@@ -11,6 +14,10 @@
     h4,
     th {
       @apply text-foreground mb-3;
+    }
+
+    h2 {
+      @apply font-extrabold tracking-tight;
     }
 
     h3 {
@@ -28,7 +35,7 @@
     }
 
     a {
-      @apply text-foreground hover:text-accent wrap-break-word decoration-dashed underline-offset-4 focus-visible:no-underline;
+      @apply text-foreground hover:bg-highlight hover:text-highlight-foreground wrap-break-word decoration-dashed underline-offset-4 focus-visible:no-underline;
     }
 
     ul {

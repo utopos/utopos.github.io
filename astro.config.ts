@@ -44,7 +44,7 @@ export default defineConfig({
       rehypePlugins: [rehypeCallouts],
     }),
     shikiConfig: {
-      themes: { light: "min-light", dark: "night-owl" },
+      themes: { light: "github-light-default", dark: "github-dark-default" },
       defaultColor: false,
       wrap: false,
       transformers: [
@@ -59,6 +59,23 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   fonts: [
+    {
+      name: "Figtree",
+      cssVariable: "--font-figtree",
+      provider: fontProviders.google(),
+      fallbacks: ["system-ui", "sans-serif"],
+      weights: [400, 500, 600, 700, 800, 900],
+      styles: ["normal", "italic"],
+    },
+    {
+      name: "IBM Plex Mono",
+      cssVariable: "--font-ibm-plex-mono",
+      provider: fontProviders.google(),
+      fallbacks: ["monospace"],
+      weights: [400, 500, 600],
+      styles: ["normal", "italic"],
+    },
+    // Only used by satori for the generated OG images.
     {
       name: "Google Sans Code",
       cssVariable: "--font-google-sans-code",

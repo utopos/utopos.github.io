@@ -7,28 +7,49 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --font-app: var(--font-google-sans-code);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-title-band: var(--title-band);
+  --color-title-ink: var(--title-ink);
+  --font-app: var(--font-figtree);
+  --font-mono: var(--font-ibm-plex-mono);
 }
 
-/* Light theme values */
+/* Light theme values: grey canvas, ink, neon-yellow highlighter */
 :root,
 [data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
-  --accent-foreground: #ffffff;
-  --muted: #e6e6e6;
-  --muted-foreground: #6b7280;
-  --border: #ece9e9;
+  --background: #f3f3f3;
+  --foreground: #0e1117;
+  --accent: #0e1117;
+  --accent-foreground: #fdff6b;
+  --muted: #e4e4e4;
+  --muted-foreground: #575e69;
+  --border: #d9d9d9;
+  --highlight: #fdff6b;
+  --highlight-foreground: #0e1117;
+  /* Tilted bar behind main headings */
+  --title-band: #eaca19;
+  --title-ink: #0e1117;
+  /* Highlighter stroke behind post titles */
+  --marker: #fdff6b;
+  --marker-ink: #0e1117;
 }
 
 /* Dark theme values */
 [data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
-  --accent-foreground: #ffffff;
-  --muted: #343f60;
-  --muted-foreground: #afb9ca;
-  --border: #ab4b08;
+  --background: #0e1117;
+  --foreground: #ececec;
+  --accent: #fdff6b;
+  --accent-foreground: #0e1117;
+  --muted: #161b22;
+  --muted-foreground: #9aa3ad;
+  --border: #262c36;
+  --highlight: #fdff6b;
+  --highlight-foreground: #0e1117;
+  /* Ink on gold would vanish where the tilted bar misses the text */
+  --title-band: #4a4116;
+  --title-ink: #fdff6b;
+  /* No stroke on dark: it makes titles hard to read */
+  --marker: transparent;
+  --marker-ink: #ececec;
 }
