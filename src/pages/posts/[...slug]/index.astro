@@ -118,20 +118,6 @@ const coverImage =
     class:list={["app-layout", { "mt-8": !config.features.showBackButton }]}
     data-pagefind-body
   >
-    {
-      coverImage && (
-        <Image
-          src={coverImage}
-          alt=""
-          widths={[640, 1000, coverImage.width]}
-          sizes="(min-width: 768px) 768px, 100vw"
-          loading="eager"
-          fetchpriority="high"
-          class="mb-6 aspect-[2.38/1] w-full rounded-md object-cover"
-        />
-      )
-    }
-
     <h1
       style={{ viewTransitionName: toTransitionName(post.id) }}
       class="text-accent inline-block text-2xl font-bold sm:text-3xl"
@@ -152,6 +138,20 @@ const coverImage =
       </span>
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
+
+    {
+      coverImage && (
+        <Image
+          src={coverImage}
+          alt=""
+          widths={[640, 1000, coverImage.width]}
+          sizes="(min-width: 768px) 768px, 100vw"
+          loading="eager"
+          fetchpriority="high"
+          class="mt-6 aspect-[2.38/1] w-full rounded-md object-cover"
+        />
+      )
+    }
 
     <article
       id="article"
