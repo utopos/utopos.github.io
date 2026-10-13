@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { getPostUrl } from "@/utils/getPostPaths";
+import { getExternalHost, getPostHref } from "@/utils/getPostHref";
 import { toTransitionName } from "@/utils/toTransitionName";
 import Datetime from "./Datetime.astro";
 
@@ -8,14 +8,17 @@ type Props = {
   variant?: "h2" | "h3";
 } & CollectionEntry<"posts">;
 
-const { variant: Heading = "h2", id, data, filePath } = Astro.props;
+const { variant: Heading = "h2", id, data } = Astro.props;
 
 const { title, description, ...props } = data;
+
+const externalHost = getExternalHost(Astro.props);
 ---
 
 <li class="my-6">
   <a
-    href={getPostUrl(id, filePath, Astro.currentLocale)}
+    href={getPostHref(Astro.props, Astro.currentLocale)}
+    {...externalHost && { target: "_blank", rel: "noopener" }}
     class:list={[
       "text-accent inline-block text-lg font-bold",
       "decoration-dashed underline-offset-4 hover:underline",
@@ -24,8 +27,18 @@ const { title, description, ...props } = data;
   >
     <Heading transition:name={toTransitionName(id)}>
       <span class="title-marker">{title}</span>
+      {externalHost && <span class="sr-only">(opens on {externalHost})</span>}
     </Heading>
   </a>
-  <Datetime {...props} />
+  <div class="flex flex-wrap items-center gap-x-3">
+    <Datetime {...props} />
+    {
+      externalHost && (
+        <span class="bg-muted text-muted-foreground rounded px-1.5 py-0.5 text-xs font-semibold">
+          ↗ {externalHost}
+        </span>
+      )
+    }
+  </div>
   <p>{description}</p>
 </li>

@@ -19,7 +19,10 @@ import config from "@/config";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
-  const sortedPosts = getSortedPosts(posts);
+  // External posts link out from the lists and get no local page.
+  const sortedPosts = getSortedPosts(posts).filter(
+    ({ data }) => !data.externalUrl
+  );
 
   return sortedPosts.map((post, index) => ({
     params: { slug: getPostSlug(post.id, post.filePath) },

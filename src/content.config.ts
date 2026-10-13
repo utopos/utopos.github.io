@@ -19,6 +19,8 @@ const posts = defineCollection({
       ogImage: image().or(z.string()).optional(),
       description: z.string(),
       canonicalURL: z.string().optional(),
+      // Posts published elsewhere (e.g. company blog): listed here, linked out, no local page.
+      externalUrl: z.url().optional(),
       hideEditPost: z.boolean().optional(),
       timezone: z.string().optional(),
     }),
