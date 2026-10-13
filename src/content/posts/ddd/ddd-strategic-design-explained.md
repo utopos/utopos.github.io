@@ -7,7 +7,7 @@ tags:
   - domain-driven-design
   - bounded-context
   - ubiquitous-language
-ogImage: "../../assets/images/posts/ddd-strategic-design-explained/cover.png"
+ogImage: "../../../assets/images/posts/ddd-strategic-design-explained/cover.png"
 description: "DDD Strategic Design explained with an example: subdomains, Ubiquitous Language, Bounded Contexts and Context Mapping for a university registration system."
 ---
 
@@ -43,7 +43,7 @@ Ultimately, the success of the DDD project hinges on the Team’s commitment to 
 
 ## We are in Space — the Problem Space
 
-![DDD: Problem Space and Solution Space](../../assets/images/posts/ddd-strategic-design-explained/01.png)
+![DDD: Problem Space and Solution Space](../../../assets/images/posts/ddd-strategic-design-explained/01.png)
 _DDD: Problem Space and Solution Space_
 
 DDD **Strategic Design** patterns belong to the **Problem Space**. In this space, we focus on performing high-level analysis of the domain and its constraints, staying away from technical details. It's not about writing a code or thinking of any specific tech stack, or architecture.
@@ -68,14 +68,14 @@ A Subdomain represents a specific area of knowledge and functionality within the
 
 The Elixir University has many teams working in different areas of expertise. We could distinguish the following areas/departments (among others): Payroll subdomain, Course Enrollment subdomain, HR subdomain etc.
 
-![University Departments](../../assets/images/posts/ddd-strategic-design-explained/02.png)
+![University Departments](../../../assets/images/posts/ddd-strategic-design-explained/02.png)
 _University Departments_
 
 ### **Generic Subdomain**
 
 The university does not have to develop separate software for each of such subdomains. For example, Payroll management is not anything particularly specific to the university business. It is a rather typical subdomain for any institution dealing with employees. Solutions for such domains can often be purchased “off the shelf” — cheaper and with more quality than developed in-house. Such domains in DDD are called Generic Subdomains since they require generic solutions for their problems.
 
-![DDD: Generic Subdomain](../../assets/images/posts/ddd-strategic-design-explained/03.png)
+![DDD: Generic Subdomain](../../../assets/images/posts/ddd-strategic-design-explained/03.png)
 _DDD: Generic Subdomain_
 
 ### **Supporting Subdomain**
@@ -84,7 +84,7 @@ Not everything can be achieved with generic products, though. Some subdomains ma
 
 A supporting subdomain is important strategically for the business but does not account for what we would call “core activity”. The HR is vital for the university, but in order to have employees to deal with, in the first place the business needs to have a competitive offering that enables the company to hire and then manage their staff.
 
-![DDD Supporting Subdomain](../../assets/images/posts/ddd-strategic-design-explained/04.png)
+![DDD Supporting Subdomain](../../../assets/images/posts/ddd-strategic-design-explained/04.png)
 _DDD Supporting Subdomain_
 
 ### Core Domain
@@ -93,7 +93,7 @@ Typically, a business or system has only one Core Domain. This core domain repre
 
 It may be a situation where no “off the shelf” product exists, or it’s hard to customize. Most probably, it is the core product of your business that differentiates you from the competitors. This domain is your business!
 
-![DDD Core Domain](../../assets/images/posts/ddd-strategic-design-explained/05.png)
+![DDD Core Domain](../../../assets/images/posts/ddd-strategic-design-explained/05.png)
 _DDD Core Domain_
 
 One of the university’s core business domains is preparation and execution of the didactic offer. In this perspective, Course Enrollment is a functionality very specific to the university: it has to deal with many Elixir University constraints and ensure concurrent access to the enrollment system for over 30k students. Satisfaction from achieving individual study plans by students is crucial for the university’s reputation. This is one of the factors distinguishing Elixir University from its competitors.
@@ -102,7 +102,7 @@ One of the university’s core business domains is preparation and execution of 
 
 Domain-Driven Design focuses on the development of the Ubiquitous Language for the Core Domain inside a Bounded Context. It is an iterative process driven by a Team of Domain Experts and Software Developers.
 
-![Team develops a Ubiquitous language that is used to create a domain model](../../assets/images/posts/ddd-strategic-design-explained/06.png)
+![Team develops a Ubiquitous language that is used to create a domain model](../../../assets/images/posts/ddd-strategic-design-explained/06.png)
 _Team develops a Ubiquitous language that is used to create a domain model_
 
 Let’s take a look at the core concepts:
@@ -139,7 +139,7 @@ In our example, the university assigned the funds and gave a green light to impl
 > **\- Gotcha!**  
 > \- I just recalled that Tutor also gets some assets from the university to conduct the course: notebook, printing paper, etc.
 
-![Domain Model for the Elixir University — Big Ball of Mud](../../assets/images/posts/ddd-strategic-design-explained/07.png)
+![Domain Model for the Elixir University — Big Ball of Mud](../../../assets/images/posts/ddd-strategic-design-explained/07.png)
 _Domain Model for the Elixir University — Big Ball of Mud_
 
 The conversation is flowing, communication is good, and the team is filling the whiteboard with concepts and relationships between them. It looks great in the beginning as they managed to develop a flowy and stringent Ubiquitous Language. However, after some time, the team realizes that the model got pretty big and many concepts are highly interconnected. They started having doubts whether all the information was indeed relevant for what they want to achieve. At the same time, they don’t feel comfortable about removing anything, as — they think — it might harm the precision of the domain knowledge they gathered by now with so much effort. They seem stuck. They decided to go for lunch.
@@ -152,7 +152,7 @@ When boundaries are not clear, the exploration of the problem space usually lead
 
 To not get off the rails, the Team should be asking themselves constantly one question — “What is the core?”. The Course Enrollment team has been pretty good so far with the development of Ubiquitous Language, but they ended up with some concepts that do not contribute directly to the core domain. When the team gets back to their whiteboard, they start focusing on the concepts needed for the Course Enrollment only. Here is the result of their work:
 
-![University Core Domain — Selection of Contexts](../../assets/images/posts/ddd-strategic-design-explained/08.png)
+![University Core Domain — Selection of Contexts](../../../assets/images/posts/ddd-strategic-design-explained/08.png)
 _University Core Domain — Selection of Contexts_
 
 The team decided the decision of who is currently a Student lays out of scope of Course Enrollment. The information management about Candidates, Graduates etc. stays belong in Admissions and the Registrar Office contexts. They notice that Course Catalog creation process is also independent and is driven by another department at the university. The catalog includes information about the courses, tutors, venues etc. This part of the model is shared at some point with the Enrollment Course team but is not managed by it. The information about employee types was found completely irrelevant, so it was removed. The answer to “what is core?” helps the team to realize that the crucial in the enrollment context is the relationship between Student and Course, driven by specific business rules within the duration of the Enrollment Campaign.
@@ -161,7 +161,7 @@ The team decided the decision of who is currently a Student lays out of scope of
 
 In Domain-Driven Design, subdomains and bounded contexts are related but distinct concepts. The following table can help you navigate the differences:
 
-![Subdomains vs Bounded Contexts](../../assets/images/posts/ddd-strategic-design-explained/09.png)
+![Subdomains vs Bounded Contexts](../../../assets/images/posts/ddd-strategic-design-explained/09.png)
 _Subdomains vs Bounded Contexts_
 
 A Bounded Context brings together and isolates concepts that serve a unique business goal. In the ideal DDD world we only work with Bounded Contexts and interactions between them (in a form of Context Mappings). However, when dealing with Legacy Systems, we cannot be assured that their domain models are built with isolation and modularization in mind. Subdomains are used to group and partition the legacy domain models into organizational units. The objective is to achieve a similar functional structure of the Bounded Context when pure DDD is applied. Most of the time, a single Bounded Context would correspond to a single Subdomain.
@@ -172,7 +172,7 @@ If we developed a system from scratch using solely a DDD approach, we would have
 
 In Domain-Driven Design, **Context Mapping** helps teams understand how different parts of the system relate to and communicate with each other. It also clarifies the boundaries and interactions between different domains or subdomains.
 
-![Mapping between Bounded Context establishes cooperation type between the Teams](../../assets/images/posts/ddd-strategic-design-explained/10.png)
+![Mapping between Bounded Context establishes cooperation type between the Teams](../../../assets/images/posts/ddd-strategic-design-explained/10.png)
 _Mapping between Bounded Context establishes cooperation type between the Teams_
 
 DDD makes team collaboration a first-class citizen. Teams need to interact with each other to share vital information that helps them achieve their business goals. In Elixir University, the information about a Candidate joining the college is passed from the Admission Team to the Course Enrollment Team, so the new student can sign up for classes. The notion of Candidate in admissions has to be translated to the notion of Student in course enrollment. Both teams cooperate to make this information sharing smooth and make some agreements (like Admission model that includes Candidate should not change in the future without a notice as it will impact enrollment operations etc.).
@@ -194,7 +194,7 @@ There are a couple of integrations approaches between the Bounded Contexts. I wi
 
 Implementation of the Context Mapping requires the Bounded Context to communicate. It’s quite a technical question, but DDD Tactical Design brings a concept of a **Domain Event**. Contexts can share information with each other about what has happened by generating and sending asynchronously domain events. Other Bounded Contexts can subscribe to these events and react accordingly.
 
-![Domain Event](../../assets/images/posts/ddd-strategic-design-explained/11.png)
+![Domain Event](../../../assets/images/posts/ddd-strategic-design-explained/11.png)
 _Domain Event_
 
 In our example, the Admission Context could generate CandidateAdmitted event. The Course Enrollment Context can listen to such events and in response create a new Student entity, so that a new student can take part in the enrollment campaign for the upcoming term at the university.

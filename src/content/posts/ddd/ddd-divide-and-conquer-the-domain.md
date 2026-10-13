@@ -7,7 +7,7 @@ tags:
   - domain-driven-design
   - bounded-context
   - domain-model
-ogImage: "../../assets/images/posts/ddd-divide-and-conquer-the-domain/cover.png"
+ogImage: "../../../assets/images/posts/ddd-divide-and-conquer-the-domain/cover.png"
 description: "Why a single, consistent domain model is an illusion, and how Bounded Contexts let you divide and conquer domain complexity."
 ---
 
@@ -21,7 +21,7 @@ I wish more aspects of life operated on this seamless and graceful principle. Ca
 
 The design process can be daunting, cumbersome, and full of surprises. A “standard approach” — that I was still taught at the university — was prescribing a consistent, monolithic domain model as a key to every success and prosperity. I remember huge canvases hanging on the walls with printed out UML class diagrams with dozens of associations shooting in all the directions. I am still in owe for those who were creating and hanging them. At that time, the art of business analysis and design laid in discovering homonyms and synonyms in the domain.
 
-![](../../assets/images/posts/ddd-divide-and-conquer-the-domain/01.png)
+![](../../../assets/images/posts/ddd-divide-and-conquer-the-domain/01.png)
 
 - **Same term different meaning**  
   Aha! A Class and a Section Number are indeed the same concept but with different names.  
@@ -37,7 +37,7 @@ This is how I at least pictured it when I was younger and when I was in a promis
 
 Here’s the scoop: life doesn’t have to be a constant battle with expectations. It’s all about tweaking those expectations to match reality. In other words, it’s time to lower the bar. They say, “Change starts from within”, and they’re not wrong.
 
-![](../../assets/images/posts/ddd-divide-and-conquer-the-domain/02.jpeg)
+![](../../../assets/images/posts/ddd-divide-and-conquer-the-domain/02.jpeg)
 
 We often expect our domain model to maintain a “global” continuity and consistency, as if anything less would be a disaster. But let me tell you, aiming for global consistency is divine. Local consistency, on the other hand, will you get things done without the guilt trip. So, let’s dive into why it can actually be pretty great.
 
@@ -57,13 +57,13 @@ Envision working on the development of a University Domain. In the Academic Plan
 
 You reach a juncture where you must decide how to integrate a Course in the Academic Planning context with a Course in the Student Registration context. The unified Student concept will emerge from the amalgamation of two distinct meanings. However, the end result is not a singular, coherent concept of a Student, but a new, complex concept burdened with dual meaning.
 
-![](../../assets/images/posts/ddd-divide-and-conquer-the-domain/03.png)
+![](../../../assets/images/posts/ddd-divide-and-conquer-the-domain/03.png)
 
 ## \> Meaning Separation Trap
 
 To address the issue of meaning overloading, you might opt for a different strategy. You decide to separate concepts that sound the same through a deliberate design choice. If they cannot coexist, let them be distinct! You begin to differentiate Course polysemes, seeking a new designation for them. Perhaps you’ll start referring to a Course in the Student Registration context as a “Class” meanwhile leave the Course designate in the Academic Planning untouched. Now we have two concepts in the monolithic domain model: Course and Class.
 
-![](../../assets/images/posts/ddd-divide-and-conquer-the-domain/04.png)
+![](../../../assets/images/posts/ddd-divide-and-conquer-the-domain/04.png)
 
 Your goal was to creatively ensure domain coherence, but you’ve inadvertently created a “universal” ubiquitous language. This language must be adopted by all teams, becoming a kind of domain “Esperanto”. However, you soon realize that this outcome of a logical decision — the “synthesized language” for a new era of organizational needs — may seem too remote for Domain Experts to embrace confidently. They may not be accustomed to the term “Class”, which lacks established business associations. The language becomes detached from the business-related mental models and loses its resonance with its original users.
 
@@ -77,7 +77,7 @@ A monolithic model without clear boundaries has to serve the views of different 
 
 Domain-Driven Design gets the complexity of software design and offers a more sensible strategy: set clear semantic borders between concepts, ensuring consistency only within these confines. Anything beyond these borders might not match the internal concepts. Talking about the business’s main goal helps pinpoint these borders and define a Bounded Context.
 
-![](../../assets/images/posts/ddd-divide-and-conquer-the-domain/05.png)
+![](../../../assets/images/posts/ddd-divide-and-conquer-the-domain/05.png)
 
 **Domain-Driven Design doesn’t pretend to have the best way to encompass all domain facets. Instead, it admits from the start that making a monolithic model that’s both coherent and feasible is impossible. This idea is the backbone of the** **Bounded Context concept, which marks the contextual boundaries where the Core Domain's** **Ubiquitous Language applies.**
 
@@ -91,7 +91,7 @@ The main goal of context mapping is to clearly define how information and comman
 2.  Determining how models and terms translate between contexts.
 3.  Establishing communication patterns and integration strategies between Teams.
 
-![](../../assets/images/posts/ddd-divide-and-conquer-the-domain/06.png)
+![](../../../assets/images/posts/ddd-divide-and-conquer-the-domain/06.png)
 
 ## Summary
 

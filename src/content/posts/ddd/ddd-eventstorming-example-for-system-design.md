@@ -23,7 +23,7 @@ EventStorming is a dynamic, collaborative modeling technique designed to unravel
 
 Pioneered by Alberto Brandolini, EventStorming brings together a diverse group of participants — from domain experts to development team members — to create a visual narrative of a system’s behavior. The primary tool? **Sticky notes on a large surface**. This seemingly simple setup becomes a powerful medium for mapping out domain events and other key elements of the system.
 
-![Example of the canvas with sticky notes — outcome of the EventStorming session. Source: Event Storming — The Storm That Cleans Up The Mess! by Samar Benamar](../../assets/images/posts/ddd-eventstorming-example-for-system-design/01.png)
+![Example of the canvas with sticky notes — outcome of the EventStorming session. Source: Event Storming — The Storm That Cleans Up The Mess! by Samar Benamar](../../../assets/images/posts/ddd-eventstorming-example-for-system-design/01.png)
 _Example of the canvas with sticky notes — outcome of the EventStorming session. Source: Event Storming — The Storm That Cleans Up The Mess! by Samar Benamar_
 
 The workshop-style format of EventStorming serves multiple purposes:
@@ -44,7 +44,7 @@ The visual and interactive nature of EventStorming makes it uniquely accessible.
 
 EventStorming is an iterative process that typically unfolds across several levels, each building upon the previous one with increasing detail and complexity. These levels can be viewed as a progressive design journey, where each step adds layers of insight and refinement to the model. As teams advance through these levels, they gain a deeper, more nuanced understanding of the domain, uncovering hidden complexities and relationships that might not be apparent at first glance.
 
-![EventStorming Iterative Process](../../assets/images/posts/ddd-eventstorming-example-for-system-design/02.png)
+![EventStorming Iterative Process](../../../assets/images/posts/ddd-eventstorming-example-for-system-design/02.png)
 _EventStorming Iterative Process_
 
 The iterative nature of EventStorming allows teams to revisit and refine their models, ensuring that each level of detail is grounded in a solid understanding of the broader context. This approach enables participants to gradually transition from a high-level, big-picture view of the domain to a more granular, implementation-ready model, all while maintaining alignment with the core business processes and goals.
@@ -63,7 +63,7 @@ The original EventStorming technique distinguishes three primary levels:
 
 As teams progress through these levels, the modeling language evolves, incorporating new concepts that build upon the foundation laid in previous stages:
 
-![Source: Software design as a cooperative game with EventStorming by Alberto Brandolini](../../assets/images/posts/ddd-eventstorming-example-for-system-design/03.png)
+![Source: Software design as a cooperative game with EventStorming by Alberto Brandolini](../../../assets/images/posts/ddd-eventstorming-example-for-system-design/03.png)
 _Source: Software design as a cooperative game with EventStorming by Alberto Brandolini_
 
 The final level, Software Design, suggests its potential application in the design phase. We'll explore the implications of this in the context of Domain-Driven Design Tactical Patterns later in this article.
@@ -72,7 +72,7 @@ The final level, Software Design, suggests its potential application in the desi
 
 At the heart of EventStorming lies the concept of a Domain Event - a significant occurrence or state change within the business domain. By visually representing these events in chronological order, EventStorming creates a compelling narrative of business processes.
 
-![BigPicture EventStorming — Domain Event Timeline](../../assets/images/posts/ddd-eventstorming-example-for-system-design/04.png)
+![BigPicture EventStorming — Domain Event Timeline](../../../assets/images/posts/ddd-eventstorming-example-for-system-design/04.png)
 _BigPicture EventStorming — Domain Event Timeline_
 
 This approach taps into the power of storytelling, a deeply ingrained human cognitive tool. By framing the analysis as a sequence of events — a story of the domain — EventStorming makes complex business processes more intuitive and accessible to all participants, regardless of their technical background.
@@ -83,7 +83,7 @@ The Big Picture EventStorming level serves as the entry point for domain explora
 
 By keeping the focus narrow, Big Picture EventStorming helps teams avoid creating overly complex models that fail to effectively communicate the most relevant aspects of the domain. Instead, it allows teams to quickly identify and prioritize key scenarios, providing vital input for the subsequent design process.
 
-![Big Picture EventStorming place in the Domain-Driven Design Workflow](../../assets/images/posts/ddd-eventstorming-example-for-system-design/05.png)
+![Big Picture EventStorming place in the Domain-Driven Design Workflow](../../../assets/images/posts/ddd-eventstorming-example-for-system-design/05.png)
 _Big Picture EventStorming place in the Domain-Driven Design Workflow_
 
 n Big Picture EventStorming, teams use a specific set of modeling elements, each represented by different colored sticky notes:
@@ -128,14 +128,14 @@ To illustrate these concepts, let’s consider a use scenario for a bidding proc
 
 ### Iteration 1: Domain Events Only + HotSpot Identification
 
-![Iteration 1: Big Picture EventStorming for an Auction Bidding Bounded](../../assets/images/posts/ddd-eventstorming-example-for-system-design/06.png)
+![Iteration 1: Big Picture EventStorming for an Auction Bidding Bounded](../../../assets/images/posts/ddd-eventstorming-example-for-system-design/06.png)
 _Iteration 1: Big Picture EventStorming for an Auction Bidding Bounded_
 
 In this initial iteration, we see the core domain events laid out chronologically. The hotspot (red sticker) identifies a potential issue or area of uncertainty in the process. At this stage, Big Picture EventStorming is purely analytical, helping the team conceptualize the business process and identify potential challenges.
 
 ### Iteration 2: Adding Actors and Systems
 
-![Iteration 2: Big Picture EventStorming for an Auction Bidding Bounded Context](../../assets/images/posts/ddd-eventstorming-example-for-system-design/07.png)
+![Iteration 2: Big Picture EventStorming for an Auction Bidding Bounded Context](../../../assets/images/posts/ddd-eventstorming-example-for-system-design/07.png)
 _Iteration 2: Big Picture EventStorming for an Auction Bidding Bounded Context_
 
 In the second iteration, the team enriches the model by adding key actors and systems:
@@ -150,12 +150,12 @@ This iteration provides a more complete picture of the process, showing not just
 
 While EventStorming excels at domain exploration, its potential extends into the realm of system design. This application involves a progression through the EventStorming levels, from Big Picture to Process Level, and finally to System Design Level. This sequential application within the context of Domain-Driven Design can be visualized as follows:
 
-![Design process overview — EventStorming for System Design](../../assets/images/posts/ddd-eventstorming-example-for-system-design/08.png)
+![Design process overview — EventStorming for System Design](../../../assets/images/posts/ddd-eventstorming-example-for-system-design/08.png)
 _Design process overview — EventStorming for System Design_
 
 The EventStorming System Design toolbox expands to include additional elements:
 
-![Transactions redefined by Alberto Brandolini](../../assets/images/posts/ddd-eventstorming-example-for-system-design/09.png)
+![Transactions redefined by Alberto Brandolini](../../../assets/images/posts/ddd-eventstorming-example-for-system-design/09.png)
 _Transactions redefined by Alberto Brandolini_
 
 In the Process and System Design Levels of EventStorming, teams introduce new modeling elements:

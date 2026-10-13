@@ -6,13 +6,13 @@ draft: false
 tags:
   - domain-driven-design
   - eventstorming
-ogImage: "../../assets/images/posts/ddd-eventstorming-strengths-and-limitations/cover.png"
+ogImage: "../../../assets/images/posts/ddd-eventstorming-strengths-and-limitations/cover.png"
 description: "Where EventStorming's verb-centric modeling fits Domain-Driven Design tactical design, where it falls short, and how to combine it with other techniques."
 ---
 
 In the realm of software development, understanding and modeling complex business domains remains a persistent challenge. Traditionally, Domain-Driven Design (DDD) practitioners often begin by identifying domain objects, focusing primarily on nouns and structures. However, this approach can lead to premature decisions about system architecture before fully grasping the essence of business processes. EventStorming is an innovative modeling technique developed by Alberto Brandolini, which shifts the focus from static structures to dynamic processes.
 
-To know more how EventStorming can be used for System Design, see my previous article: [EventStorming: navigating complex domains in Domain-Driven Design (example)](/posts/ddd-eventstorming-example-for-system-design/).
+To know more how EventStorming can be used for System Design, see my previous article: [EventStorming: navigating complex domains in Domain-Driven Design (example)](/posts/ddd/ddd-eventstorming-example-for-system-design/).
 
 This article explores the relationship between EventStorming and Domain-Driven Design, examining how this verb-centric approach aligns with and complements DDD principles. We’ll delve into the strengths and limitations of EventStorming as a modeling language within the DDD framework and discuss strategies for integrating it effectively into the design process.
 
@@ -28,7 +28,7 @@ EventStorming represents a paradigm shift in domain modeling. Instead of startin
 
 To evaluate EventStorming’s fitness for Domain-Driven Design, we need to examine how its modeling concepts align with core DDD tactical patterns. Here’s a breakdown of the mapping:
 
-![Mapping between Domain-Driven Design Tactical Design patterns and EvenStorming concepts.](../../assets/images/posts/ddd-eventstorming-strengths-and-limitations/01.png)
+![Mapping between Domain-Driven Design Tactical Design patterns and EvenStorming concepts.](../../../assets/images/posts/ddd-eventstorming-strengths-and-limitations/01.png)
 _Mapping between Domain-Driven Design Tactical Design patterns and EvenStorming concepts._
 
 ## Direct Correspondences
@@ -83,7 +83,7 @@ To leverage EventStorming effectively in a DDD context:
 5.  **Iterate and Refine**: Continuously refine the model, moving between EventStorming and other modeling techniques as needed.
 6.  **Align with Implementation**: Ensure the model aligns with the chosen implementation architecture and patterns.
 
-![dea of how Evenstorming dictionary can be tailored when needed. Here: adding Entity relationship in UML style. Separate UML diagrams would be advisable for clarity.](../../assets/images/posts/ddd-eventstorming-strengths-and-limitations/02.png)
+![dea of how Evenstorming dictionary can be tailored when needed. Here: adding Entity relationship in UML style. Separate UML diagrams would be advisable for clarity.](../../../assets/images/posts/ddd-eventstorming-strengths-and-limitations/02.png)
 _dea of how Evenstorming dictionary can be tailored when needed. Here: adding Entity relationship in UML style. Separate UML diagrams would be advisable for clarity._
 
 ## Final Thoughts
