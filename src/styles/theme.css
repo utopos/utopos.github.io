@@ -28,7 +28,7 @@
   --highlight: #fdff6b;
   --highlight-foreground: #0e1117;
   /* Tilted bar behind main headings */
-  --title-band: #eaca19;
+  --title-band: #ffdd00;
   --title-ink: #0e1117;
   /* Highlighter stroke behind post titles */
   --marker: #fdff6b;
@@ -47,7 +47,7 @@
   --highlight: #fdff6b;
   --highlight-foreground: #0e1117;
   /* Ink on gold would vanish where the tilted bar misses the text */
-  --title-band: #4a4116;
+  --title-band: #6e5f12;
   --title-ink: #fdff6b;
   /* No stroke on dark: it makes titles hard to read */
   --marker: transparent;
