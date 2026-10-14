@@ -1,24 +1,49 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
 import { getExternalHost, getPostHref } from "@/utils/getPostHref";
 import { toTransitionName } from "@/utils/toTransitionName";
 import Datetime from "./Datetime.astro";
 
 type Props = {
   variant?: "h2" | "h3";
+  /** Show the post's local cover image above the title (used for featured posts). */
+  showCover?: boolean;
 } & CollectionEntry<"posts">;
 
-const { variant: Heading = "h2", id, data } = Astro.props;
+const { variant: Heading = "h2", showCover = false, id, data } = Astro.props;
 
 const { title, description, ...props } = data;
 
 const externalHost = getExternalHost(Astro.props);
+const href = getPostHref(Astro.props, Astro.currentLocale);
+const linkTarget = externalHost && { target: "_blank", rel: "noopener" };
+
+// Only local images can be optimized; remote/string OG images are skipped.
+const cover =
+  showCover && data.ogImage && typeof data.ogImage !== "string"
+    ? data.ogImage
+    : undefined;
 ---
 
 <li class="my-6">
+  {
+    cover && (
+      // Decorative duplicate of the title link, hidden from keyboard and screen readers.
+      <a href={href} {...linkTarget} tabindex="-1" aria-hidden="true">
+        <Image
+          src={cover}
+          alt=""
+          widths={[640, 1000]}
+          sizes="(min-width: 768px) 736px, 100vw"
+          class="border-border mb-3 aspect-video w-full rounded-md border object-cover transition-opacity hover:opacity-90"
+        />
+      </a>
+    )
+  }
   <a
-    href={getPostHref(Astro.props, Astro.currentLocale)}
-    {...externalHost && { target: "_blank", rel: "noopener" }}
+    href={href}
+    {...linkTarget}
     class:list={[
       "text-accent inline-block text-lg font-bold",
       "decoration-dashed underline-offset-4 hover:underline",

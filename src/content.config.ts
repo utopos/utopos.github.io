@@ -21,6 +21,8 @@ const posts = defineCollection({
       canonicalURL: z.string().optional(),
       // Posts published elsewhere (e.g. company blog): listed here, linked out, no local page.
       externalUrl: z.url().optional(),
+      // Keep ogImage for sharing but don't show it as the banner (e.g. posts with a video embed).
+      hideCover: z.boolean().optional(),
       hideEditPost: z.boolean().optional(),
       timezone: z.string().optional(),
     }),

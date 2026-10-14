@@ -75,6 +75,7 @@ const {
   timezone,
   tags,
   hideEditPost,
+  hideCover,
 } = post.data;
 
 const { Content } = await render(post);
@@ -99,9 +100,11 @@ const ogImage = ogImageUrl
   ? new URL(ogImageUrl, Astro.url.origin).href
   : undefined;
 
-// Local (imported) OG images double as the cover banner shown above the title.
+// Local (imported) OG images double as the cover banner below the post metadata.
 const coverImage =
-  initOgImage && typeof initOgImage !== "string" ? initOgImage : undefined;
+  !hideCover && initOgImage && typeof initOgImage !== "string"
+    ? initOgImage
+    : undefined;
 ---
 
 <PostLayout
