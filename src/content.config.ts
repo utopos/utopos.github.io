@@ -35,6 +35,8 @@ const pages = defineCollection({
     description: z.string().optional(),
     ogImage: z.string().optional(),
     canonicalURL: z.string().optional(),
+    // Shown as "Last updated" on pages that change over time (e.g. /now).
+    updated: z.date().optional(),
   }),
 });
 
