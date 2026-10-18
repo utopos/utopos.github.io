@@ -30,9 +30,10 @@
   /* Tilted bar behind main headings */
   --title-band: #ffdd00;
   --title-ink: #0e1117;
-  /* Highlighter stroke behind post titles */
-  --marker: #fdff6b;
-  --marker-ink: #0e1117;
+  /* Title marker: a full-height deeper yellow block, like dark mode */
+  --marker: #ffe14d;
+  --marker-top: 8%;
+  --marker-bottom: 92%;
 }
 
 /* Dark theme values */
@@ -49,7 +50,8 @@
   /* Ink on gold would vanish where the tilted bar misses the text */
   --title-band: #6e5f12;
   --title-ink: #fdff6b;
-  /* No stroke on dark: it makes titles hard to read */
-  --marker: transparent;
-  --marker-ink: #ececec;
+  /* Full-height marker: dark ink above a low stroke would vanish on the dark page */
+  --marker: #fdff6b;
+  --marker-top: 8%;
+  --marker-bottom: 92%;
 }

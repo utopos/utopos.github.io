@@ -61,16 +61,35 @@
  * Post titles: highlighter stroke behind the lower part of each line.
  * Apply to an inline element so every wrapped line gets its own stroke.
  */
+/* Titles stay plain; a highlighter stroke sweeps in on hover/focus of the parent link,
+   or is always on with data-marked (featured post, article title) */
 @utility title-marker {
-  color: var(--marker-ink);
   background-image: linear-gradient(
-    transparent 58%,
-    var(--marker) 58%,
-    var(--marker) 92%,
-    transparent 92%
+    transparent var(--marker-top),
+    var(--marker) var(--marker-top),
+    var(--marker) var(--marker-bottom),
+    transparent var(--marker-bottom)
   );
+  /* Let the stroke overhang the letters a little without shifting the text */
+  margin-inline: -0.2em;
+  padding-inline: 0.2em;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
+  transition:
+    background-size 250ms ease-out,
+    color 250ms ease-out;
+
+  &[data-marked],
+  :is(a:hover, a:focus-visible) & {
+    background-size: 100% 100%;
+    color: var(--color-highlight-foreground);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
 :target {

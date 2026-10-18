@@ -9,9 +9,17 @@ type Props = {
   variant?: "h2" | "h3";
   /** Show the post's local cover image above the title (used for featured posts). */
   showCover?: boolean;
+  /** Keep the title marker on, not just on hover (used for featured posts). */
+  marked?: boolean;
 } & CollectionEntry<"posts">;
 
-const { variant: Heading = "h2", showCover = false, id, data } = Astro.props;
+const {
+  variant: Heading = "h2",
+  showCover = false,
+  marked = false,
+  id,
+  data,
+} = Astro.props;
 
 const { title, description, ...props } = data;
 
@@ -44,14 +52,11 @@ const cover =
   <a
     href={href}
     {...linkTarget}
-    class:list={[
-      "text-accent inline-block text-lg font-bold",
-      "decoration-dashed underline-offset-4 hover:underline",
-      "focus-visible:no-underline focus-visible:underline-offset-0",
-    ]}
+    class="text-foreground inline-block text-lg font-bold"
   >
     <Heading transition:name={toTransitionName(id)}>
-      <span class="title-marker">{title}</span>
+      <span class="title-marker" data-marked={marked || undefined}>{title}</span
+      >
       {externalHost && <span class="sr-only">(opens on {externalHost})</span>}
     </Heading>
   </a>

@@ -80,7 +80,7 @@ const homePath = getRelativeLocaleUrl(locale, "");
           </h2>
           <ul>
             {featuredPosts.map(data => (
-              <Card variant="h3" showCover {...data} />
+              <Card variant="h3" showCover marked {...data} />
             ))}
           </ul>
         </section>
