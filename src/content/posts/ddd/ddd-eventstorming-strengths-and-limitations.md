@@ -1,6 +1,7 @@
 ---
 title: "Domain-Driven Design (DDD): EventStorming for Tactical Design — Strengths and Limitations"
 pubDatetime: 2024-07-04T19:08:27.000Z
+canonicalURL: "https://medium.com/@lambrych/eventstorming-for-domain-driven-design-strengths-and-limitations-3f0b49009c38"
 featured: false
 draft: false
 tags:

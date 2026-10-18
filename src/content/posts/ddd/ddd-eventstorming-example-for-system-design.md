@@ -1,6 +1,7 @@
 ---
 title: "Domain-Driven Design (DDD): EventStorming example for System Design"
 pubDatetime: 2024-07-03T14:34:42.000Z
+canonicalURL: "https://medium.com/@lambrych/can-eventstorming-guide-the-design-workflow-6f75d8aa20e0"
 featured: false
 draft: false
 tags:

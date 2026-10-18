@@ -1,6 +1,7 @@
 ---
 title: "Adding stream_async() to Phoenix LiveView"
 pubDatetime: 2024-06-06T16:42:15.776Z
+canonicalURL: "https://dev.to/utopos/adding-streamasync-to-phoenix-liveview-2kii"
 featured: false
 draft: false
 tags:

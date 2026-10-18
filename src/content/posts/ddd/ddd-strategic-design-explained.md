@@ -1,6 +1,7 @@
 ---
 title: "Domain-Driven Design (DDD): Strategic Design Explained"
 pubDatetime: 2024-06-25T07:10:02.000Z
+canonicalURL: "https://medium.com/@lambrych/domain-driven-design-ddd-strategic-design-explained-55e10b7ecc0f"
 featured: false
 draft: false
 tags:

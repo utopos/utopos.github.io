@@ -1,6 +1,7 @@
 ---
 title: "Domain-Driven Design (DDD): Divide and Conquer the Domain"
 pubDatetime: 2024-06-27T10:19:50.000Z
+canonicalURL: "https://medium.com/@lambrych/domain-driven-design-divide-and-conquer-the-domain-4070521cb751"
 featured: false
 draft: false
 tags:

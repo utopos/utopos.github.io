@@ -1,6 +1,7 @@
 ---
 title: "How to report Postgres custom errors in Ecto Changeset"
 pubDatetime: 2022-01-10T13:43:38.000Z
+canonicalURL: "https://medium.com/@lambrych/how-to-report-postgres-custom-errors-in-ecto-changeset-7ffbe6a0c1ef"
 featured: false
 draft: false
 tags:

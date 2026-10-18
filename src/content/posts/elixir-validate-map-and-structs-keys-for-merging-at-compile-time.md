@@ -1,6 +1,7 @@
 ---
 title: "Elixir: map casting to structs (with checks at compile time!)"
 pubDatetime: 2024-06-10T08:04:28.017Z
+canonicalURL: "https://dev.to/utopos/elixir-validate-map-and-structs-keys-for-merging-at-compile-time-4dli"
 featured: false
 draft: false
 tags:
