@@ -1,37 +1,42 @@
 ---
 title: "About"
-description: "A bit about me and this blog."
+description: "Jakub Lambrych: Elixir developer in Wrocław with a philosophy degree and a decade of leading projects at UNICEF, Microsoft and Sirius."
 ---
 
-AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+Hi, I'm Jakub. I'm an Elixir developer based in Wrocław, Poland, with degrees in both software engineering and philosophy.
 
-![Astro Paper](@/assets/images/astropaper-og.jpg)
+I build web applications with Elixir, Phoenix and LiveView at [Curiosum](https://curiosum.com/)
 
-AstroPaper provides a solid foundation for blogs, or even portfolios\_ with full markdown support, built-in dark mode, and a clean layout that works out-of-the-box.
+I started out as a developer: C#, ASP.NET and later Java and PL/SQL at Comarch. I spent over a decade on the other side of software, leading projects and teams:
 
-The blog posts in this theme also serve as guides, docs or example articles\_ making AstroPaper a flexible starting point for your next content-driven site.
+- **Microsoft** (Lisbon): ran the speech data collection programme for Cortana across ~20 countries, and designed a pipeline that cut operating costs by 90%.
+- **UNICEF** (Bangkok): Innovation Lead for Thailand, bringing Human-Centred Design into programmes and running an award-winning hackathon for marginalised youth.
+- **Sirius** (Bangkok): led a digital transformation for a top-3 Colombian bank, with four teams across Thailand, China and Colombia, in three languages.
 
-## Features
+Along the way I built a reading platform for the **European Capital of Culture Wrocław 2016** and worked on a youth employment project in Lima for **Polish Aid**. In 2024 I came back to hands-on development, this time with Elixir.
 
-AstroPaper comes with a set of useful features that make content publishing easy and effective:
+## What I write about
 
-- SEO-friendly
-- Fast performance
-- Light & dark mode
-- Highly customizable
-- Organizable blog posts
-- Responsive & accessible
-- Static search with [PageFind](https://pagefind.app/)
-- Automatic social image generation
+- **Elixir and Phoenix LiveView**: practical patterns, such as [adding `stream_async` to LiveView](/posts/adding-streamasync-to-phoenix-liveview/) or reporting [Postgres custom errors in Ecto changesets](/posts/how-to-report-postgres-custom-errors-in-ecto-changeset/).
+- **Software design**: Domain-Driven Design, EventStorming and modular design. A good place to start is [DDD Strategic Design Explained](/posts/ddd/ddd-strategic-design-explained/).
 
-and so much more.
+Some of my articles were written for the Curiosum blog. They're listed among the [posts](/posts/) and open on curiosum.com.
 
-## Show your support
+## Open source
 
-If you like [AstroPaper](https://github.com/satnaing/astro-paper), consider giving it a star ⭐️.
+- [live_stream_async](https://github.com/utopos/live_stream_async): assign LiveView streams asynchronously with a `stream_async/4` macro.
+- [key_validator](https://github.com/utopos/key_validator): compile-time checks that map and keyword keys exist in the target struct.
 
-Found a bug 🐛 or have an improvement ✨ in mind? Feel free to open an [issue](https://github.com/satnaing/astro-paper/issues), submit a [pull request](https://github.com/satnaing/astro-paper/pulls) or start a [discussion](https://github.com/satnaing/astro-paper/discussions).
+## Talks
 
-If you find this theme helpful, you can also [sponsor me on GitHub](https://github.com/sponsors/satnaing) or [buy me a coffee](https://buymeacoffee.com/satnaing) to show your support — every penny counts.
+- **Hooked on Widgets: A Better Pattern for Reusable LiveView Components**, ElixirConf EU 2026, Málaga. [Watch the talk](/posts/talks/elixirconf-eu-2026-reusable-liveview-components/).
 
-Kyay zuu! 🙏🏼
+## Elsewhere
+
+I speak Polish, English, Spanish and Portuguese, so feel free to write in any of them.
+
+- [GitHub](https://github.com/utopos)
+- [LinkedIn](https://www.linkedin.com/in/jakub-lambrych/)
+- [dev.to](https://dev.to/utopos) and [Medium](https://medium.com/@lambrych), where some of these posts first appeared
+
+To see what I'm focused on at the moment, check my [Now](/now/) page.
