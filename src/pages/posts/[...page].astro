@@ -7,14 +7,16 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import Main from "@/components/Main.astro";
 import Card from "@/components/Card.astro";
 import Footer from "@/components/Footer.astro";
-import Pagination from "@/components/Pagination.astro";
+// import Pagination from "@/components/Pagination.astro";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getCollection("posts", ({ data }) => !data.draft);
-  return paginate(getSortedPosts(posts), { pageSize: config.posts.perPage });
+  // Pagination disabled: list every post on a single page.
+  // To re-enable, use `pageSize: config.posts.perPage` and restore <Pagination>.
+  return paginate(getSortedPosts(posts), { pageSize: Infinity });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
@@ -34,7 +36,7 @@ const t = useTranslations(locale);
     </ul>
   </Main>
 
-  <Pagination {page} />
+  {/* <Pagination {page} /> */}
 
   <Footer noMarginTop={page.lastPage > 1} />
 </Layout>

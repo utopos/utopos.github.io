@@ -3,6 +3,9 @@ title: "About"
 description: "Jakub Lambrych: Elixir developer in Wrocław with a philosophy degree and a decade of leading projects at UNICEF, Microsoft and Sirius."
 ---
 
+![Me in a UNICEF t-shirt next to a mascot at an innovation fair in Bangkok, Thailand](../../assets/images/about/kuba_nectec_unicef.jpg)
+*Innovation fair in Bangkok, Thailand*
+
 Hi, I'm Jakub. I'm an Elixir developer based in Wrocław, Poland, with degrees in both software engineering and philosophy.
 
 I build web applications with Elixir, Phoenix and LiveView at [Curiosum](https://curiosum.com/)

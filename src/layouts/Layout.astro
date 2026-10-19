@@ -32,6 +32,7 @@ const rssHref = getRelativeLocaleUrl(
 
 <!doctype html>
 <html
+  data-theme="light"
   dir={site.dir ?? "ltr"}
   lang={Astro.currentLocale ?? site.lang}
   class="overflow-y-scroll scroll-smooth"
@@ -95,25 +96,6 @@ const rssHref = getRelativeLocaleUrl(
         />
       )
     }
-
-    <!--
-      Inline FOUC-prevention script: sets data-theme on <html> before
-      the browser paints. Runs synchronously, no defer/async.
-    -->
-    <script is:inline>
-      (function () {
-        const stored = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
-        const theme = stored ?? (prefersDark ? "dark" : "light");
-        const root = document.firstElementChild;
-        root?.setAttribute("data-theme", theme);
-        root?.classList.toggle("dark", theme === "dark");
-        // Expose value so theme.ts can skip re-detection.
-        window.__theme = { value: theme };
-      })();
-    </script>
 
     <ClientRouter />
   </head>

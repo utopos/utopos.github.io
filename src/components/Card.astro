@@ -4,6 +4,9 @@ import { Image } from "astro:assets";
 import { getExternalHost, getPostHref } from "@/utils/getPostHref";
 import { toTransitionName } from "@/utils/toTransitionName";
 import Datetime from "./Datetime.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import config from "@/config";
+import { slugifyStr } from "@/utils/slugify";
 
 type Props = {
   variant?: "h2" | "h3";
@@ -22,7 +25,10 @@ const {
 } = Astro.props;
 
 const { title, description, ...props } = data;
+// Untagged posts default to "others"; don't show that placeholder.
+const tags = (data.tags ?? []).filter(tag => tag !== "others");
 
+const locale = Astro.currentLocale ?? config.site.lang;
 const externalHost = getExternalHost(Astro.props);
 const href = getPostHref(Astro.props, Astro.currentLocale);
 const linkTarget = externalHost && { target: "_blank", rel: "noopener" };
@@ -34,7 +40,9 @@ const cover =
     : undefined;
 ---
 
-<li class="my-6">
+<li
+  class="border-border mt-6 border-b border-dashed pb-6 last:border-b-0 last:pb-0"
+>
   {
     cover && (
       // Decorative duplicate of the title link, hidden from keyboard and screen readers.
@@ -71,4 +79,20 @@ const cover =
     }
   </div>
   <p>{description}</p>
+  {
+    tags.length > 0 && (
+      <ul class="text-muted-foreground mt-1 flex flex-wrap text-sm">
+        {tags.map(tag => (
+          <li class="after:mx-2 after:content-['·'] last:after:content-none">
+            <a
+              href={getRelativeLocaleUrl(locale, `tags/${slugifyStr(tag)}/`)}
+              class="hover:text-accent focus-visible:text-accent"
+            >
+              {tag}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
 </li>

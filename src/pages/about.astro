@@ -28,7 +28,10 @@ const { Content } = await render(about);
 
   <Breadcrumb />
 
-  <Main pageTitle={about.data.title} class="app-prose">
+  <Main
+    pageTitle={about.data.title}
+    class="app-prose [&_p:has(img)]:text-muted-foreground [&_img]:max-w-72 [&_img]:rounded-md [&_p:has(img)]:text-center [&_p:has(img)]:text-sm"
+  >
     <Content />
   </Main>
 
