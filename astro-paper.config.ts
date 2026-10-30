@@ -2,7 +2,7 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://utopos.github.io/",
+    url: "https://utopos.blog/",
     title: "Jakub Lambrych",
     description: "Notes on Elixir, Phoenix and software engineering.",
     author: "Jakub Lambrych",
