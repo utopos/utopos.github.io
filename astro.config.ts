@@ -45,7 +45,7 @@ export default defineConfig({
       rehypePlugins: [rehypeCallouts, rehypeMarkHeadings],
     }),
     shikiConfig: {
-      themes: { light: "github-light-default", dark: "github-dark-default" },
+      themes: { light: "github-light-default", dark: "catppuccin-mocha" },
       defaultColor: false,
       wrap: false,
       transformers: [
