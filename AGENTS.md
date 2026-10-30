@@ -20,3 +20,9 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+## Dependencies
+
+- Package manager is pnpm (not npm). Use `pnpm update`, `pnpm outdated`.
+- Keep `typescript` pinned to `^6`. TypeScript 7 breaks `astro check` ("does not currently support TypeScript 7.0"). `pnpm update --latest` will bump it to 7, so re-pin with `pnpm add -D typescript@^6` afterwards. Revisit once `@astrojs/ts-content-mapper` (TS 7.1+ support) is stable.
+- After dependency updates, verify with `pnpm astro check` and `pnpm astro build`.
