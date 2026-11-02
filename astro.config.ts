@@ -18,6 +18,7 @@ import {
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import { rehypeMarkHeadings } from "./src/utils/rehypeMarkHeadings";
+import { rehypeTableWrapper } from "./src/utils/rehypeTableWrapper";
 import config from "./astro-paper.config";
 
 export default defineConfig({
@@ -42,7 +43,7 @@ export default defineConfig({
         remarkToc,
         [remarkCollapse, { test: "Table of contents" }],
       ],
-      rehypePlugins: [rehypeCallouts, rehypeMarkHeadings],
+      rehypePlugins: [rehypeCallouts, rehypeMarkHeadings, rehypeTableWrapper],
     }),
     shikiConfig: {
       themes: { light: "github-light-default", dark: "catppuccin-mocha" },

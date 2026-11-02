@@ -5,6 +5,7 @@ import satori from "satori";
 import sharp from "sharp";
 import { getFontPathByWeight } from "@/utils/getFontPathByWeight";
 import { getPostSlug } from "@/utils/getPostPaths";
+import { postFilter } from "@/utils/postFilter";
 import config from "@/config";
 
 export async function getStaticPaths() {
@@ -13,7 +14,9 @@ export async function getStaticPaths() {
   }
 
   const posts = await getCollection("posts").then(p =>
-    p.filter(({ data }) => !data.draft && !data.ogImage && !data.externalUrl)
+    p.filter(
+      post => postFilter(post) && !post.data.ogImage && !post.data.externalUrl
+    )
   );
 
   return posts.map(post => ({
@@ -46,6 +49,7 @@ export const GET: APIRoute = async ({ props, url }) => {
 
   const svg = await satori(
     {
+      key: null,
       type: "div",
       props: {
         style: {
