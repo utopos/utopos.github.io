@@ -1,0 +1,37 @@
+---
+// Cookie consent banner for Google Analytics (Consent Mode v2).
+// Visibility is toggled by src/scripts/consent.ts.
+---
+
+<div
+  id="consent-banner"
+  hidden
+  role="dialog"
+  aria-label="Cookie consent"
+  class="bg-background border-border fixed inset-x-4 bottom-4 z-50 mx-auto flex max-w-xl flex-col gap-3 rounded border p-4 shadow-lg sm:flex-row sm:items-center"
+>
+  <p class="text-sm">
+    This blog uses Google Analytics cookies to understand how it is read. Allow
+    them?
+  </p>
+  <div class="flex shrink-0 gap-2">
+    <button
+      type="button"
+      data-consent="denied"
+      class="border-border cursor-pointer rounded border px-3 py-1 text-sm"
+    >
+      Decline
+    </button>
+    <button
+      type="button"
+      data-consent="granted"
+      class="bg-accent text-accent-foreground cursor-pointer rounded px-3 py-1 text-sm"
+    >
+      Accept
+    </button>
+  </div>
+</div>
+
+<script>
+  import "@/scripts/consent";
+</script>

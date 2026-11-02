@@ -89,6 +89,16 @@ export default defineConfig({
   ],
   env: {
     schema: {
+      PUBLIC_GA_MEASUREMENT_ID: envField.string({
+        access: "public",
+        context: "client",
+        default: "G-PSF2FDZY14",
+      }),
+      PUBLIC_GA_DEBUG: envField.boolean({
+        access: "public",
+        context: "client",
+        default: false,
+      }),
       PUBLIC_GOOGLE_SITE_VERIFICATION: envField.string({
         access: "public",
         context: "client",

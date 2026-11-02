@@ -5,6 +5,8 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import { resolveDefaultOgImagePath } from "@/utils/resolveDefaultOgImagePath";
 import { getAssetPath } from "@/utils/withBase";
 import config from "@/config";
+import ConsentBanner from "@/components/ConsentBanner.astro";
+import { PUBLIC_GA_DEBUG, PUBLIC_GA_MEASUREMENT_ID } from "astro:env/client";
 import "@/styles/global.css";
 
 type Props = {
@@ -15,6 +17,14 @@ type Props = {
 };
 
 const { site } = config;
+
+// Hosts allowed to send GA4 data (custom domain and GitHub Pages URL).
+const GA_HOSTS = ["utopos.blog", "utopos.github.io"];
+
+// Set PUBLIC_GA_DEBUG=true in .env to test GA locally (dev server or preview):
+// enables the tag in dev, allows localhost and sends events in GA4 debug mode.
+const gaActive = import.meta.env.PROD || PUBLIC_GA_DEBUG;
+if (PUBLIC_GA_DEBUG) GA_HOSTS.push("localhost", "127.0.0.1");
 
 const {
   title = site.title,
@@ -88,21 +98,65 @@ const rssHref = getRelativeLocaleUrl(
     <!-- Extra head content injected by child layouts (e.g. JSON-LD, article meta) -->
     <slot name="head" />
 
-    {
-      site.googleVerification && (
-        <meta
-          name="google-site-verification"
-          content={site.googleVerification}
-        />
-      )
-    }
+    {site.googleVerification && (
+      <meta name="google-site-verification" content={site.googleVerification} />
+    )}
 
     <ClientRouter />
+    {gaActive && (
+      <>
+        <!-- Google tag (gtag.js), loaded only on the production hosts; page views are sent on astro:page-load for ClientRouter -->
+        <script
+          is:inline
+          define:vars={{
+            gaId: PUBLIC_GA_MEASUREMENT_ID,
+            gaHosts: GA_HOSTS,
+            gaDebug: PUBLIC_GA_DEBUG,
+          }}
+        >
+          // Skip analytics on localhost, previews and forks.
+          if (gaHosts.includes(location.hostname)) {
+            window.gaEnabled = true;
+            const loader = document.createElement("script");
+            loader.async = true;
+            loader.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+            document.head.appendChild(loader);
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            // define:vars wraps this script in an IIFE; expose gtag for consent.ts.
+            window.gtag = gtag;
+            gtag("consent", "default", {
+              ad_storage: "denied",
+              ad_user_data: "denied",
+              ad_personalization: "denied",
+              analytics_storage: "denied",
+              wait_for_update: 500,
+            });
+            if (localStorage.getItem("consent-v1") === "granted") {
+              gtag("consent", "update", { analytics_storage: "granted" });
+            }
+            gtag("js", new Date());
+            gtag("config", gaId, {
+              send_page_view: false,
+              ...(gaDebug && { debug_mode: true }),
+            });
+            document.addEventListener("astro:page-load", () => {
+              gtag("event", "page_view", {
+                page_title: document.title,
+                page_location: location.href,
+                page_path: location.pathname,
+              });
+            });
+          }
+        </script>
+      </>
+    )}
   </head>
-  <body
-    class="bg-background font-app text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col"
-  >
+  <body class="bg-background font-app text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col">
     <slot />
+    {gaActive && <ConsentBanner />}
     <script>
       import "@/scripts/theme";
     </script>
