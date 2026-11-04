@@ -1,0 +1,137 @@
+---
+import type { MarkdownHeading } from "astro";
+import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
+import { useTranslations } from "@/i18n";
+
+type Props = {
+  headings: MarkdownHeading[];
+  minHeadings?: number;
+};
+
+const { headings, minHeadings = 3 } = Astro.props;
+const t = useTranslations(Astro.currentLocale);
+
+// Only h1/h2, skipping the inline remark-toc section heading.
+const items = headings.filter(
+  h => h.depth <= 2 && h.text.trim().toLowerCase() !== "table of contents"
+);
+---
+
+{items.length >= minHeadings && (
+  <aside
+    aria-label={t.post.tableOfContents}
+    class="absolute top-0 left-full ms-6 hidden h-full w-52 xl:block"
+  >
+    <nav
+      id="side-toc"
+      class="sticky top-8 max-h-[calc(100dvh-4rem)] overflow-y-auto pe-2"
+    >
+      <button
+        type="button"
+        id="side-toc-toggle"
+        aria-expanded="true"
+        aria-controls="side-toc-list"
+        title={t.post.toggleTableOfContents}
+        class="text-muted-foreground hover:text-foreground aria-[expanded=true]:text-foreground mb-3 -ms-1 flex size-8 items-center justify-center rounded"
+      >
+        <span class="sr-only">{t.post.tableOfContents}</span>
+        <IconMenuDeep aria-hidden="true" class="size-5" />
+      </button>
+      <ul id="side-toc-list" class="border-border space-y-1 border-s text-sm">
+        {items.map(h => (
+          <li>
+            <a
+              href={`#${h.slug}`}
+              data-toc-link={h.slug}
+              class="text-muted-foreground data-[active]:text-foreground data-[active]:font-bold -ms-px block border-s-2 border-transparent py-0.5 ps-3 pe-1 leading-snug data-[active]:border-current"
+            >
+              <span class="title-marker transition-none!">{h.text}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </aside>
+)}
+
+<script is:inline data-astro-rerun>
+  // Collapse toggle; starts open on every page load.
+  (() => {
+    const toggle = document.getElementById("side-toc-toggle");
+    const list = document.getElementById("side-toc-list");
+    if (!toggle || !list) return;
+
+    toggle.addEventListener("click", () => {
+      list.hidden = !list.hidden;
+      toggle.setAttribute("aria-expanded", String(!list.hidden));
+    });
+  })();
+
+  // The TOC renders before the article, so wait for the headings to be parsed.
+  function initSideToc() {
+    const toc = document.getElementById("side-toc");
+    if (!toc) return;
+
+    const links = Array.from(toc.querySelectorAll("[data-toc-link]"));
+    const headings = links
+      .map(link => document.getElementById(link.dataset.tocLink))
+      .filter(Boolean);
+    if (headings.length === 0) return;
+
+    let activeId = null;
+    function setActive(id) {
+      if (id === activeId) return;
+      activeId = id;
+      for (const link of links) {
+        const isActive = link.dataset.tocLink === id;
+        link.toggleAttribute("data-active", isActive);
+        // Same always-on highlighter stroke as the article h2 headings.
+        link.firstElementChild?.toggleAttribute("data-marked", isActive);
+        if (isActive) {
+          link.setAttribute("aria-current", "true");
+          link.scrollIntoView({ block: "nearest" });
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      }
+    }
+
+    // Active section = last heading that has scrolled past the top quarter.
+    function update() {
+      const offset = window.innerHeight * 0.25;
+      let current = headings[0].id;
+      for (const heading of headings) {
+        if (heading.getBoundingClientRect().top - offset <= 0) {
+          current = heading.id;
+        } else {
+          break;
+        }
+      }
+      setActive(current);
+    }
+
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    }
+
+    document.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener(
+      "astro:before-swap",
+      () => document.removeEventListener("scroll", onScroll),
+      { once: true }
+    );
+    update();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSideToc, { once: true });
+  } else {
+    initSideToc();
+  }
+</script>

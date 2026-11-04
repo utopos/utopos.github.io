@@ -18,6 +18,8 @@ export default {
     sharePostViaEmail: "Share this post via email",
     tagLabel: "Tags",
     backToTop: "Back to top",
+    tableOfContents: "On this page",
+    toggleTableOfContents: "Show or hide the table of contents",
     goBack: "Go back",
     editPage: "Edit page",
     previousPost: "Previous Post",
