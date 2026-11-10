@@ -24,6 +24,7 @@ const posts = defineCollection({
       // Keep ogImage for sharing but don't show it as the banner (e.g. posts with a video embed).
       hideCover: z.boolean().optional(),
       hideEditPost: z.boolean().optional(),
+      hideToc: z.boolean().optional(),
       // An empty value means "not set", so the site timezone applies.
       timezone: z
         .string()

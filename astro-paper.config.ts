@@ -25,6 +25,7 @@ export default defineAstroPaperConfig({
       url: "https://github.com/utopos/utopos.github.io/edit/main/",
     },
     search: "pagefind",
+    toc: true,
   },
   socials: [
     { name: "github", url: "https://github.com/utopos" },
