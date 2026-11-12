@@ -150,13 +150,34 @@ const items = buildTocTree(headings);
     inset-inline-start: -0.75rem;
     opacity: 0.6;
   }
-  [data-toc-nav] a:hover,
-  [data-toc-nav] a[aria-current="true"] {
+  [data-toc-nav] a:hover {
     color: var(--color-accent);
   }
+  /* Active section: same highlighter stroke as the article headings. */
+  [data-toc-nav] a {
+    background-image: linear-gradient(
+      transparent var(--marker-top),
+      var(--marker) var(--marker-top),
+      var(--marker) var(--marker-bottom),
+      transparent var(--marker-bottom)
+    );
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    transition:
+      background-size 250ms ease-out,
+      color 250ms ease-out;
+  }
   [data-toc-nav] a[aria-current="true"] {
-    text-decoration: underline dashed;
-    text-underline-offset: 4px;
+    background-size: 100% 100%;
+    color: var(--color-highlight-foreground);
+    font-weight: 700;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-toc-nav] a {
+      transition: none;
+    }
   }
   .toc-label {
     flex-shrink: 0;
