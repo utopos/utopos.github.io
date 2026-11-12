@@ -1,51 +1,72 @@
 ---
-title: "Dealing with complexity using Modular Design"
+title: "What 10 Years of Growth Taught Me About Module Boundaries"
 description: "Large Elixir codebases rarely get simpler. Revisiting Modular Design: decomposing systems by behaviour to keep them maintainable and testable, even as AI writes more of our code."
-alternative_titles: "Modular Design in Elixir"
+alternative_titles:
+  - "Dealing with complexity using Modular Design"
+  - "Modular Design in Elixir"
+  - "Split by Behaviour, Not by Nouns"
+  - "Escaping the Big Ball of Nouns"
+  - "Stop Modelling Nouns: Modular Design in Elixir"
+  - "Verbs over Nouns: Decomposing Elixir Systems by Behaviour"
+  - "Taming Complexity in Large Elixir Codebases with Modular Design"
+  - "What 10 Years of Growth Taught Me About Module Boundaries"
+  - "From 2,500 Modules to Ones You Can Hold in Your Head"
+  - "Keeping Complexity in Check with Modular Design"
+  - "A 1972 Idea for Today's Elixir Codebases"
+  - "Parnas Was Right: Modular Design in Elixir"
+  - "Modular Design in the Age of AI-Generated Code"
+  - "Code You Can Still Understand: Modular Design When AI Writes More of It"
 pubDatetime: 2026-10-17
 featured: false
-draft: false
+draft: true
 tags:
   - elixir
   - ash
 # ogImage: "../../assets/images/posts/modular_design/cover.png"
 ---
 
-Large codebases rarely get simpler. Complexity creeps in with every feature. Back in 2019, in his talk [*The Big Ball of Nouns*](https://www.youtube.com/watch?v=hgDCg3QdZgU), [Maciej Kaszubowski](https://mkaszubowski.com/) introduced the Elixir community to **Modular Design**, a lean approach to structuring systems for maintainability and testability.
+Large codebases rarely get simpler. Complexity creeps in with every feature.
 
-After years of working on large Elixir codebases, I think it's more relevant now than ever. AI may write more and more of our code, but we still have to review it, understand it and answer for it. Clear module boundaries make that possible.
+With the advent of AI, more and more code is automatically generated. Keeping that complexity in check matters more than ever. We still have to **review the code, understand it and answer for it**.
 
-In this article, I look at where the complexity of a large codebase comes from, why splitting a system by nouns makes it worse, and how splitting it by behaviour keeps it in check. I finish with a worked example from a side project.
+Back in 2019, in his talk [*The Big Ball of Nouns*](https://www.youtube.com/watch?v=hgDCg3QdZgU), [Maciej Kaszubowski](https://mkaszubowski.com/) introduced the Elixir community to **Modular Design**, a lean approach to structuring systems for maintainability and testability. Clear module boundaries make that possible.
 
-## What 8 years of growth looks like
+In this article, I look at where that complexity comes from, why splitting a system by nouns makes it worse, and how splitting it by behaviour helps. A worked example from my side project runs through the whole article.
 
-The project I'm working on right now is a typical Phoenix + Postgres app. It has been commercially successful for 8 years, and the codebase shows it:
+## What 10 years of growth looks like
 
-- 2,581 modules
-- 29,565 functions
-- 276 tables
-- 130 references to the most connected schema
-- **4 tables with over 100 fields**
+A project I've worked on is a typical Phoenix + Postgres app. It has been commercially successful for about 10 years, and the codebase shows it:
+
+- about 2,500 modules
+- about 30,000 functions
+- nearly 300 tables
+- over 100 references to the most connected schema
+- **several tables with over 100 fields**
 
 Numbers like these are hard to picture, so here are all the connections between the app's modules and schemas:
 
-![Dependency graph of the app's modules and schemas, showing a dense tangle of connections](../../assets/images/posts/modular_design/cover.png)
+![Dependency graph of the app's modules and schemas: a few large schema hubs, each used by over a hundred modules, sit in a dense tangle of connections](../../assets/images/posts/modular_design/network-anonymised.png)
 
-This is a monolithic domain model with very high coupling: almost everything is connected to everything else. Nobody can hold a system like this in their head. Miller's Law [^miller] puts the limit of our short-term memory at roughly **7 ± 2 items**, and later research suggests it's closer to 4 [^cowan].
+This is a monolithic domain model with very high coupling: almost everything is connected to everything else. Nobody can hold a system like this in their head.
 
-LLMs don't share that limit in the same way. They're good at navigating a codebase like this, and they help us:
+> [!info] How much fits in our head?
+> Miller's Law [^miller] puts the limit of our short-term memory at roughly **7 ± 2 items**, and later research suggests **it's closer to 4** [^cowan].
+
+Fortunately, AI tools don't share that limit in the same way. They're good at navigating a codebase like this, and they help us:
 
 - trace coupling across modules,
 - spot edge cases we'd miss,
 - implement changes faster.
 
-But LLMs don't take **accountability** for the code they write. We do. A human still signs off on a feature, and a human still reviews it. Both need to understand what changed and what it might break. That's only possible if the system stays understandable for people, not just for machines.
+However, AI models don't take **accountability** for the code they write. We do. A **human still signs off on a feature, and a human still reviews it**. Both need to understand what changed and what it might break. That's only possible if the system stays understandable for people, not just for machines.
 
 So can we make a system like this less complex?
 
 ## Essential vs accidental complexity
 
-> "Complexity is like a waterbed. Push it down in one place, and it bulges up somewhere else." (Larry Wall)
+> Complexity is like a waterbed. Push it down in one place, and it bulges up somewhere else.
+
+Larry Wall
 
 Fred Brooks [^brooks] split complexity into two kinds:
 
@@ -64,7 +85,13 @@ Accidental complexity is a different story. Coupling through a shared data model
 
 </figure>
 
-So the goal isn't to get rid of complexity, but to keep the accidental part small. How we decompose a system has a big say in that. It largely decides the system's **maintainability**, one of the product quality characteristics in ISO/IEC 25010 [^iso25010]. The standard breaks maintainability into five sub-characteristics, and each one maps to a question we ask in everyday work:
+## Quality of the System Decomposition
+
+Let's accept that we cannot get rid of complexity. **Our goal is different: keep the accidental part of the complexity small.**
+
+How we decompose a system has a big say in that. It largely decides the system's **maintainability**, one of the product quality characteristics in ISO/IEC 25010 [^iso25010].
+
+The ISO standard breaks maintainability into five sub-characteristics, and each one maps to a question we ask in everyday work:
 
 - **modularity**: does a change to one part leave the others alone?
 - **reusability**: can we use a part elsewhere without dragging its dependencies along?
@@ -72,7 +99,7 @@ So the goal isn't to get rid of complexity, but to keep the accidental part smal
 - **modifiability**: can we change it without breaking something else?
 - **testability**: can we test it easily, on its own?
 
-**So the real question is: how do we decompose the domain to score well on all five?**
+So the real question is: **how do we decompose the domain to score well on all five to reduce the accidental complexity?**
 
 ## The Big Ball of Nouns
 
@@ -88,8 +115,8 @@ It's no surprise that we start here. We're used to thinking in nouns: object-ori
 
 In a Phoenix app, this gives us a set of contexts, usually one per noun, that all reach into the same schemas:
 
-- directly, through CRUD and other schema-specific operations,
-- indirectly, through preloaded associations, joins and so on.
+- **directly**: CRUD and other schema-specific operations,
+- **indirectly**: preloaded associations, joins and so on.
 
 <figure>
 
@@ -113,7 +140,7 @@ The cost shows up when a new feature arrives. Changing a domain object, for exam
 - check that existing functions, queries and reports still behave correctly,
 - update tests at every level, from unit tests to integration tests.
 
-Most of this work has nothing to do with the feature we were asked to build. In my project, a change to the most connected schema can mean checking up to 130 places. That's accidental complexity at work.
+Most of this work has nothing to do with the feature we were asked to build. In that project, a change to the most connected schema can mean checking over 100 places. That's accidental complexity at work.
 
 ## Modular Design: an idea from 1972
 
@@ -169,8 +196,6 @@ To make this concrete, I'll follow the structure of Maciej's example from the ta
 We start with one requirement:
 
 - An author publishes an event to the platform.
-
-<!-- insert a screenshot from haps.today -->
 
 Thinking in nouns, we get a single `Event` entity with its data and the rules that guard it. On the left is the schema, on the right the interface other modules depend on:
 
@@ -280,7 +305,7 @@ Let's go through what has changed:
 - **New functions `submit(event)` and `reject(event, reason)`**: the author no longer publishes. They submit, and the reviewer either rejects or publishes.
 - **Modified `publish(event)`**: it used to be the author creating an event (and, since the slugs feature, generating the slug). Now it's a reviewer action that only works on a `:submitted` event. Its meaning changed, so every caller has to be checked.
 - **Modified `search`, `find_by_author_id`, `find_by_date` and `find_by_slug`**: each one now takes a `status` argument. A regular visitor should only see published events, while authors and reviewers need to see submitted or rejected ones too. That changes every function signature, so every caller has to change as well.
-- **Unchanged but still checked, `cancel(event)` and `fetch_by_id(id)`**: their code didn't change, but we still had to work out how `cancelled` relates to the new `status` and whether `fetch_by_id` should return an event nobody has published yet.
+- **Unchanged but still checked: `cancel(event)` and `fetch_by_id(id)`**: their code didn't change, but we still had to work out how `cancelled` relates to the new `status` and whether `fetch_by_id` should return an event nobody has published yet.
 
 Overall, one feature cost us:
 
@@ -317,17 +342,15 @@ When the review feature adds `status`, every one of those queries has to learn t
 
 The hard part is finding them. Nothing in the `Events` interface tells you where those queries are, so you have to search the codebase.
 
-At scale, it gets worse. In my client's project, a feature that touches one of the 100-field schemas means retesting most of the system to be sure nothing broke.
+At scale, it gets worse. In the project I've worked on, a feature that touches one of the 100-field schemas means retesting most of the system to be sure nothing broke.
 
 This is the core problem with a monolithic, noun-based data model, which is how most Phoenix apps grow. Maciej sees the same pattern in most projects:
 
-- a few entities organised around nouns
-- behaviour spread across all of them
-- other contexts reading the same tables directly, around the interface
-- most actions represented as updates to the same rows: a new `status`, another flag
-- high coupling
-
-<!-- todo: sprawdzic powyzsze vs slajdy -->
+- a few entities organised around nouns,
+- behaviour spread across all of them,
+- other contexts reading the same tables directly, around the interface,
+- most actions represented as updates to the same rows: a new `status`, another flag,
+- high coupling.
 
 ## Modular Design Recipe
 
@@ -361,15 +384,13 @@ If we map each behaviour to a module, we get:
 
 ### `Publishing`
 
-**Decision**: Serve published event to the public.
+**Decision**: serve published events to the public.
 
 We start with the core feature: making an event public. This module does just one thing: it serves published events, no matter how they got there.
 
 - It doesn't care whether an event was reviewed, or what it looked like as a submission.
 - Everything in it is published by definition, so there's no workflow status, and queries don't need to filter by it.
 - Cancelling is a publishing concern, so `cancelled` lives here too.
-
-Its `Event` looks a lot like a `Submission`, but it means something different: not a submission, but a published event.
 
 1. **Outcome**: visitors can find and read published events, and see when one is cancelled.
 2. **Data**: title, description, start, duration, author and whether it's cancelled.
@@ -391,7 +412,7 @@ Event
 ```elixir file="Interface"
 Publishing
   publish(event_params)
-  cancel(event)
+  cancel(event_id)
   fetch_by_id(id)
   search(query)
 ```
@@ -400,14 +421,14 @@ Publishing
 
 ### `Slugs`
 
-**Decision**: convert slug to an identifier of an Event.
+**Decision**: map a readable slug to an event id.
 
-In the noun-based version, slugs forced us to change `publish(event)`. Here they are a module of their own that maps slugs to ids and back. Once an event is published, the web layer calls `slugify` with the event id and its slug. When a visitor opens `/events/2026/10/26/elixir-meetup`, the web layer turns the slug into an id with `get_id_by_slug(slug)` and asks Publishing for the event. Neither Publishing nor Submissions knows that slugs exist, so no existing schema or function changes.
+In the noun-based version, slugs forced us to change `publish(event)`. Here they are a module of their own that maps slugs to ids and back.
 
 1. **Outcome**: a readable URL resolves to an event, and an event has a readable URL.
 2. **Data**: the event id and its slug.
 3. **Source**: the web layer, right after an event is published. Publishing never calls Slugs.
-4. **Interface**: create a slug for an event and look up an event id by its slug.
+4. **Interface**: assign a slug to an event and look up an event id by its slug.
 
 <div class="code-pair">
 
@@ -419,7 +440,7 @@ Slug
 
 ```elixir file="Interface"
 Slugs
-  slugify(event_id, slug)
+  assign(event_id, slug)
   get_id_by_slug(slug)
 ```
 
@@ -435,16 +456,18 @@ Slugs
 
 ### `Submissions`
 
-**Decision**: Accept or Reject events submitted by authors
+**Decision**: accept or reject events submitted by authors.
 
 Now we model the review part of the app. This module decides whether a submitted event is good enough. A reviewer either accepts it and sends it to Publishing, or rejects it with a reason that tells the author what to fix.
+
+Its `Submission` looks a lot like the `Event` in Publishing, but it means something different: an event waiting for a decision, not a published one.
 
 1. **Outcome**: a reviewer accepts or rejects each submitted event, and the author learns why it was rejected.
 2. **Data**: the submitted event, its author, the decision, the rejection reason and the reviewer.
 3. **Source**: the author's submission form. On accept, the event goes on to Publishing.
 4. **Interface**: submit an event, list submissions, accept one and reject one with a reason.
 
-Question 3 catches a gap here: a rejection needs a reason, so `reject` takes one as an argument.
+Question 2 catches a gap here: a rejection needs a reason, so `reject` takes one as an argument.
 
 <div class="code-pair">
 
@@ -480,7 +503,7 @@ Submissions
 
 Modules may call each other, as Submissions calls Publishing here, but only through the interface, which is the part designed to stay stable.
 
-## Enforcing the interface
+## Interface is the Core
 
 The interface is the module's whole contract, but only if it's strict. If `publish/1` accepts any params map, callers come to depend on whatever keys happen to work.
 
@@ -494,7 +517,7 @@ defmodule Publishing.Event do
 end
 ```
 
-Saša Jurić describes the same split in *Towards Maintainable Elixir: The Core and the Interface* [^juric]. The interface (controllers, LiveViews, jobs) turns raw external input into well-shaped data, a struct or a map with known keys and types. The core only ever works with that. Validation happens once, at the edge, and the core doesn't have to defend itself against string keys and half-filled params.
+Saša Jurić describes the same split in *Towards Maintainable Elixir: The Core and the Interface* [^juric]. His *interface* is the edge of the system, not a module's public functions: controllers, LiveViews and jobs. It turns raw external input into well-shaped data, a struct or a map with known keys and types. The core only ever works with that. Validation happens once, at the edge, and the core doesn't have to defend itself against string keys and half-filled params.
 
 **If you use Ash, you're at home.** The resource declares the fields and their types, and the action declares which of them it accepts. Ash casts and validates the input before the action runs, and a code interface exposes it as a plain `Publishing.publish/1`:
 
@@ -521,7 +544,9 @@ end
 
 The struct and the Ash resource describe the same contract. The difference is that Ash also checks the types: `"90"` is cast to `90`, and `"tomorrow"` in `start` is rejected before the action runs.
 
-A strict interface also splits the testing work. Turning raw params into a struct is tested once, at the edge. The module's own tests start from a struct, which tells them exactly what input to build, so they can focus on the module's rules instead of string keys and missing fields.
+**A strict interface also splits the testing work**.
+
+Turning raw params into a struct is tested once, at the edge. The module's own tests start from a struct, which tells them exactly what input to build, so they can focus on the module's rules instead of string keys and missing fields.
 
 <figure>
 
@@ -531,7 +556,7 @@ A strict interface also splits the testing work. Turning raw params into a struc
 
 </figure>
 
-## Nouns vs behaviour, side by side
+## Nouns vs Behaviour, side by side
 
 We've now built the same features twice. Complexity didn't go away in either version. What changed is where it lives.
 
@@ -545,11 +570,11 @@ Decomposing by nouns put it in a shared data model. Every new feature added fiel
 
 </figure>
 
-Back to the five maintainability questions from the start:
+Back to the five maintainability questions from the start, plus one more: deletability.
 
 | | Nouns | Modular Design |
 |---|---|---|
-| *Output* | One big `Events` context with multiple responsibilities | Single-responsibility modules: Publishing, Submissions, Slugs |
+| *Result* | One big `Events` context with multiple responsibilities | Single-responsibility modules: Publishing, Submissions, Slugs |
 | **Modularity**: does a change to one part leave the others alone? | Rarely.<br>Adding `status` changed 5 of 7 functions and every query that joins `Event`. | Usually.<br>The review workflow lives entirely in Submissions, and adding slugs didn't touch Publishing. |
 | **Reusability**: can we use a part without dragging its dependencies along? | Hard.<br>Reusing `Event` means taking its author, reviewer, status and slug along. | Easy.<br>Slugs only needs an event id and a slug. |
 | **Analysability**: can we tell what a change will affect? | Hard.<br>Callers reach into the schema directly, so finding everything a change affects means searching the codebase. | Easy.<br>The interface lists everything callers can depend on: four functions for Publishing. |
@@ -560,10 +585,11 @@ Back to the five maintainability questions from the start:
 
 ## Modular Design Trade-offs
 
-In Maciej's words, this isn't a silver bullet. It costs something:
+Modular Design is not a magic wand. It costs something:
 
 - **Duplicated data**: Submissions and Publishing both hold the event's title, description and dates. Copies have to be kept in sync, and someone has to decide which one is the source of truth. What happens when the author fixes a typo in an event that's already published? Does the edit go to Submissions, straight to Publishing, or through review again? That's a business decision the shared table used to hide.
 - **Communication between modules**: modules call each other's interfaces or exchange events instead of sharing tables. That's more code, and sometimes eventual consistency.
+- **Transactions get trickier**: a single business operation can span several modules, and those modules don't have to share the same data layer. One might keep its data in Postgres, another in ETS or behind an external API, so one database transaction can't always cover the whole operation. When a step fails halfway, the modules can disagree, and we have to handle it ourselves with retries, idempotent operations or compensating steps.
 - **Cross-cutting reads get harder**: reports and dashboards that used to be a single join now pull data from several modules.
 - **Boundaries are hard to get right up front**: a wrong cut is expensive to move later. Event Storming helps, because it keeps the focus on outcomes rather than tables.
 - **It goes against the grain**: Phoenix generators and most tutorials start from schemas, so the team has to unlearn the noun-first habit.
@@ -572,15 +598,15 @@ In Maciej's words, this isn't a silver bullet. It costs something:
 
 ## Conclusion
 
-Modular Design isn't a framework or a library. It's mindset: focus on behaviour, not data, and encapsulate important decisions.
+Modular Design isn't a framework or a library. It's a mindset: focus on behaviour, not data, and encapsulate important decisions.
 
-The payoff is a system you can understand one module at a time: small enough to fit in your head, and small enough for AI tools to change safely. You stay accountable for every change, so that matters more than ever.
+The payoff is a system you can understand one module at a time: small enough to fit in your head, and small enough for AI tools to change safely. Since you stay accountable for every change, that matters more than ever.
 
 [^iso25010]: [ISO/IEC 25010:2023 - Systems and software engineering - Systems and software Quality Requirements and Evaluation (SQuaRE) - Product quality model](https://www.iso.org/standard/78176.html)
 
-[^modular-design]: [On the Criteria To Be Used in Decomposing Systems into Modules" (1972) by David L. Parnas](https://dl.acm.org/doi/10.1145/361598.361623)
+[^modular-design]: ["On the Criteria To Be Used in Decomposing Systems into Modules" (1972) by David L. Parnas](https://dl.acm.org/doi/10.1145/361598.361623)
 
-[^brooks]: [Brooks, Frederick P. (1995), The Mythical Man-Month: Essays on Software Engineering ([20th] Anniversary ed.)](https://blas.com/the-mythical-man-month/)
+[^brooks]: [Brooks, Frederick P. (1987), "No Silver Bullet: Essence and Accidents of Software Engineering", Computer 20(4)](https://doi.org/10.1109/MC.1987.1663532)
 
 [^miller]: [Miller, George A. (1956), "The Magical Number Seven, Plus or Minus Two: Some Limits on Our Capacity for Processing Information", Psychological Review 63(2)](https://doi.org/10.1037/h0043158)
 

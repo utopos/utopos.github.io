@@ -1,0 +1,60 @@
+<svg viewBox="0 0 800 440" class="shared-schema" width="800" height="440" role="img" aria-labelledby="ss-title ss-desc" xmlns="http://www.w3.org/2000/svg">
+<title id="ss-title">Contexts reaching into each other's schemas</title>
+<desc id="ss-desc">The Subscription, Event and Author schemas sit together in one shared data model, outside every context, and no context owns any of them. Author has many events. Notifications uses Subscription and joins Event, Events uses Event, Accounts uses Author, and Reports reads authors and preloads their events. Three contexts depend on the Event schema.</desc>
+<style>
+.shared-schema text { font-family: Figtree, system-ui, sans-serif; fill: #0e1117; }
+.shared-schema .bg { fill: #f3f3f3; }
+.shared-schema .shelf { fill: #e4e4e4; stroke: #575e69; stroke-width: 1.5; stroke-dasharray: 6 4; }
+.shared-schema .shelf-name { font-size: 12px; font-weight: 600; fill: #575e69; letter-spacing: 0.5px; }
+.shared-schema .ctx { fill: #fdff6b; stroke: #0e1117; stroke-width: 2; }
+.shared-schema .ctx-name { font-size: 15px; font-weight: 700; }
+.shared-schema .sch { fill: #ffffff; stroke: #0e1117; stroke-width: 1.5; }
+.shared-schema .sch-name { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 14px; font-weight: 600; }
+.shared-schema .lbl { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px; font-weight: 600; }
+.shared-schema .assoc-lbl { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px; }
+.shared-schema .legend { font-size: 12px; }
+.shared-schema .uses { stroke: #0e1117; stroke-width: 2; fill: none; }
+.shared-schema .assoc { stroke: #575e69; stroke-width: 2; stroke-dasharray: 2 4; stroke-linecap: round; fill: none; }
+.shared-schema .head { fill: #0e1117; }
+</style>
+<defs>
+<marker id="ss-a" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker>
+<marker id="ss-b" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker>
+</defs>
+<rect class="bg" x="0" y="0" width="800" height="440"/>
+<rect class="shelf" x="20" y="150" width="760" height="130" rx="12"/>
+<text class="shelf-name" x="36" y="272">SHARED DATA MODEL</text>
+<rect class="sch" x="65.0" y="190" width="140" height="50" rx="6"/>
+<text class="sch-name" x="135" y="220" text-anchor="middle">Subscription</text>
+<rect class="sch" x="330.0" y="190" width="140" height="50" rx="6"/>
+<text class="sch-name" x="400" y="220" text-anchor="middle">Event</text>
+<rect class="sch" x="595.0" y="190" width="140" height="50" rx="6"/>
+<text class="sch-name" x="665" y="220" text-anchor="middle">Author</text>
+<line class="assoc" x1="593" y1="215" x2="472" y2="215" marker-end="url(#ss-b)"/>
+<text class="assoc-lbl" x="532" y="206" text-anchor="middle">has_many</text>
+<text class="assoc-lbl" x="532" y="234" text-anchor="middle">:events</text>
+<rect class="ctx" x="60.0" y="40" width="150" height="48" rx="12"/>
+<text class="ctx-name" x="135" y="69.0" text-anchor="middle">Notifications</text>
+<rect class="ctx" x="325.0" y="40" width="150" height="48" rx="12"/>
+<text class="ctx-name" x="400" y="69.0" text-anchor="middle">Events</text>
+<rect class="ctx" x="325.0" y="340" width="150" height="48" rx="12"/>
+<text class="ctx-name" x="400" y="369.0" text-anchor="middle">Reports</text>
+<rect class="ctx" x="590.0" y="340" width="150" height="48" rx="12"/>
+<text class="ctx-name" x="665" y="369.0" text-anchor="middle">Accounts</text>
+<line class="uses" x1="135" y1="88" x2="135" y2="188" marker-end="url(#ss-a)"/>
+<line class="uses" x1="400" y1="88" x2="400" y2="188" marker-end="url(#ss-a)"/>
+<line class="uses" x1="665" y1="340" x2="665" y2="242" marker-end="url(#ss-a)"/>
+<line class="uses" x1="200" y1="88" x2="345" y2="188" marker-end="url(#ss-a)"/>
+<rect class="bg" x="243" y="118" width="58" height="20" rx="4"/>
+<text class="lbl" x="272" y="132" text-anchor="middle">join</text>
+<line class="uses" x1="440" y1="340" x2="612" y2="242" marker-end="url(#ss-a)"/>
+<rect class="bg" x="482" y="282" width="87" height="20" rx="4"/>
+<text class="lbl" x="526" y="296" text-anchor="middle">Repo.all</text>
+<line class="uses" x1="380" y1="340" x2="380" y2="242" marker-end="url(#ss-a)"/>
+<rect class="bg" x="247" y="287" width="139" height="20" rx="4"/>
+<text class="lbl" x="372" y="301" text-anchor="end">preload :events</text>
+<line class="uses" x1="20" y1="414" x2="55" y2="414" marker-end="url(#ss-a)"/>
+<text class="legend" x="63" y="418">context uses schema</text>
+<line class="assoc" x1="190" y1="414" x2="225" y2="414" marker-end="url(#ss-b)"/>
+<text class="legend" x="233" y="418">relation between schemas</text>
+</svg>

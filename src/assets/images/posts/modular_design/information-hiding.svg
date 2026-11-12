@@ -1,0 +1,65 @@
+<svg viewBox="0 0 800 360" class="info-hiding" width="800" height="360" role="img" aria-labelledby="ih-title ih-desc" xmlns="http://www.w3.org/2000/svg">
+<title id="ih-title">Information hiding: a module shows its interface and hides its secret</title>
+<desc id="ih-desc">Module A and Module B call Module C, and they can only reach its interface, its public functions. Below the interface, Module C hides its secret: its data structure, its algorithm and its own tables. A direct call from another module into the secret is crossed out. The secret can change without the callers changing.</desc>
+<style>
+.info-hiding text { font-family: Figtree, system-ui, sans-serif; fill: #0e1117; }
+.info-hiding .ih-title { font-size: 14px; font-weight: 700; }
+.info-hiding .ih-big { font-size: 18px; font-weight: 700; }
+.info-hiding .ih-small { font-size: 12px; }
+.info-hiding .ih-note { font-size: 12px; font-weight: 600; }
+.info-hiding .ih-mono { font-size: 13px; fill: #f3f3f3; }
+.info-hiding .ih-inverse { fill: #f3f3f3; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
+.info-hiding .ih-caller { fill: #ffffff; stroke: #0e1117; stroke-width: 2; }
+.info-hiding .ih-module { fill: #fdff6b; stroke: #0e1117; stroke-width: 2; }
+.info-hiding .ih-iface { fill: #0e1117; }
+.info-hiding .ih-secret { fill: #f3f3f3; stroke: #575e69; stroke-width: 1.5; stroke-dasharray: 6 4; }
+.info-hiding .ih-secret-name { font-size: 11px; font-weight: 600; fill: #575e69; letter-spacing: 0.5px; }
+.info-hiding .ih-item { fill: #ffffff; stroke: #0e1117; stroke-width: 1; }
+.info-hiding .ih-call { stroke: #0e1117; stroke-width: 2; fill: none; }
+.info-hiding .ih-blocked { stroke: #575e69; stroke-width: 1.5; stroke-dasharray: 4 4; fill: none; }
+.info-hiding .ih-cross { stroke: #d6336c; stroke-width: 3; stroke-linecap: round; }
+.info-hiding .ih-pointer { stroke: #575e69; stroke-width: 1.5; fill: none; }
+.info-hiding .ih-head { fill: #0e1117; }
+</style>
+<defs>
+<marker id="ih-arrowhead" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="ih-head" d="M0,0 L10,5 L0,10 z"/></marker>
+</defs>
+
+<rect class="ih-caller" x="20" y="70" width="140" height="50" rx="10"/>
+<text class="ih-title" x="90" y="100" text-anchor="middle">Module A</text>
+<rect class="ih-caller" x="20" y="230" width="140" height="50" rx="10"/>
+<text class="ih-title" x="90" y="260" text-anchor="middle">Module B</text>
+
+<rect class="ih-module" x="290" y="40" width="300" height="290" rx="10"/>
+<rect class="ih-iface" x="290" y="40" width="300" height="80" rx="10"/>
+<rect class="ih-iface" x="290" y="100" width="300" height="20"/>
+<text class="ih-inverse" x="306" y="60">INTERFACE</text>
+<text class="ih-mono" x="306" y="84">public functions</text>
+<text class="ih-mono" x="306" y="104">(the only way in)</text>
+<text class="ih-big" x="440" y="150" text-anchor="middle">Module C</text>
+
+<rect class="ih-secret" x="305" y="165" width="270" height="150" rx="8"/>
+<text class="ih-secret-name" x="318" y="304">SECRET</text>
+<rect class="ih-item" x="318" y="178" width="244" height="30" rx="5"/>
+<text class="ih-small" x="440" y="198" text-anchor="middle">data structure</text>
+<rect class="ih-item" x="318" y="215" width="244" height="30" rx="5"/>
+<text class="ih-small" x="440" y="235" text-anchor="middle">algorithm</text>
+<rect class="ih-item" x="318" y="252" width="244" height="30" rx="5"/>
+<text class="ih-small" x="440" y="272" text-anchor="middle">its own tables</text>
+
+<line class="ih-call" x1="160" y1="95" x2="288" y2="82" marker-end="url(#ih-arrowhead)"/>
+<line class="ih-call" x1="160" y1="245" x2="288" y2="104" marker-end="url(#ih-arrowhead)"/>
+<line class="ih-blocked" x1="160" y1="265" x2="296" y2="265"/>
+<line class="ih-cross" x1="220" y1="255" x2="236" y2="275"/>
+<line class="ih-cross" x1="236" y1="255" x2="220" y2="275"/>
+<text class="ih-small" x="228" y="298" text-anchor="middle">no direct access</text>
+
+<line class="ih-pointer" x1="600" y1="80" x2="625" y2="80"/>
+<text class="ih-note" x="632" y="76">Visible to everyone.</text>
+<text class="ih-small" x="632" y="94">Small and stable.</text>
+<line class="ih-pointer" x1="585" y1="240" x2="625" y2="240"/>
+<text class="ih-note" x="632" y="222">Hidden inside.</text>
+<text class="ih-small" x="632" y="240">Likely to change.</text>
+<text class="ih-small" x="632" y="256">When it does,</text>
+<text class="ih-small" x="632" y="272">callers don't notice.</text>
+</svg>

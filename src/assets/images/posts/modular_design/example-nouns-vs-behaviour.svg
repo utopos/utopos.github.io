@@ -1,0 +1,110 @@
+<svg viewBox="0 0 900 415" class="decomposition-compare" width="900" height="415" role="img" aria-labelledby="dc-title dc-desc" xmlns="http://www.w3.org/2000/svg">
+<title id="dc-title">Decomposition by nouns compared with decomposition by behaviour</title>
+<desc id="dc-desc">On the left, six functions all read and write one shared Event table with ten fields, and every one of them depends on the status field. On the right, three isolated modules, Submissions, Publishing and Slugs, each keep their own data. The web layer calls each module through its interface. The only call between modules is Submissions handing an accepted event to Publishing.</desc>
+<style>
+.decomposition-compare text { font-family: Figtree, system-ui, sans-serif; fill: #0e1117; }
+.decomposition-compare .dc-heading { font-size: 15px; font-weight: 700; }
+.decomposition-compare .dc-title { font-size: 15px; font-weight: 700; }
+.decomposition-compare .dc-code { font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+.decomposition-compare .dc-muted { fill: #575e69; }
+.decomposition-compare .dc-label { font-size: 12px; font-weight: 600; }
+.decomposition-compare .dc-fn { fill: #f3f3f3; stroke: #575e69; stroke-width: 1.5; }
+.decomposition-compare .dc-table { fill: #e4e4e4; stroke: #0e1117; stroke-width: 2; }
+.decomposition-compare .dc-module { fill: #fdff6b; stroke: #0e1117; stroke-width: 2; }
+.decomposition-compare .dc-local { fill: #f3f3f3; stroke: #0e1117; stroke-width: 1; }
+.decomposition-compare .dc-link { stroke: #0e1117; stroke-width: 1.5; fill: none; }
+.decomposition-compare .dc-divider { stroke: #d9d9d9; stroke-width: 2; stroke-dasharray: 6 6; }
+.decomposition-compare .dc-web { fill: #e4e4e4; stroke: #575e69; stroke-width: 1.5; stroke-dasharray: 6 4; }
+.decomposition-compare .dc-rule { stroke: #0e1117; stroke-width: 1; }
+.decomposition-compare .dc-head { fill: #0e1117; }
+</style>
+<defs>
+<marker id="dc-arrowhead" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="dc-head" d="M0,0 L10,5 L0,10 z"/></marker>
+</defs>
+<text class="dc-heading" x="190" y="30" text-anchor="middle">By nouns: one shared data model</text>
+<line class="dc-link" x1="90" y1="120" x2="125" y2="116"/>
+<line class="dc-link" x1="90" y1="120" x2="125" y2="236"/>
+<line class="dc-link" x1="90" y1="120" x2="125" y2="260"/>
+<line class="dc-link" x1="90" y1="210" x2="125" y2="116"/>
+<line class="dc-link" x1="90" y1="210" x2="125" y2="260"/>
+<line class="dc-link" x1="90" y1="210" x2="125" y2="308"/>
+<line class="dc-link" x1="90" y1="300" x2="125" y2="260"/>
+<line class="dc-link" x1="90" y1="300" x2="125" y2="284"/>
+<line class="dc-link" x1="90" y1="300" x2="125" y2="332"/>
+<line class="dc-link" x1="290" y1="120" x2="255" y2="212"/>
+<line class="dc-link" x1="290" y1="120" x2="255" y2="260"/>
+<line class="dc-link" x1="290" y1="210" x2="255" y2="116"/>
+<line class="dc-link" x1="290" y1="210" x2="255" y2="164"/>
+<line class="dc-link" x1="290" y1="210" x2="255" y2="260"/>
+<line class="dc-link" x1="290" y1="300" x2="255" y2="236"/>
+<line class="dc-link" x1="290" y1="300" x2="255" y2="260"/>
+<rect class="dc-fn" x="0" y="105" width="90" height="30" rx="15"/>
+<text class="dc-code" x="45" y="124" text-anchor="middle">publish</text>
+<rect class="dc-fn" x="0" y="195" width="90" height="30" rx="15"/>
+<text class="dc-code" x="45" y="214" text-anchor="middle">submit</text>
+<rect class="dc-fn" x="0" y="285" width="90" height="30" rx="15"/>
+<text class="dc-code" x="45" y="304" text-anchor="middle">reject</text>
+<rect class="dc-fn" x="290" y="105" width="90" height="30" rx="15"/>
+<text class="dc-code" x="335" y="124" text-anchor="middle">cancel</text>
+<rect class="dc-fn" x="290" y="195" width="90" height="30" rx="15"/>
+<text class="dc-code" x="335" y="214" text-anchor="middle">search</text>
+<rect class="dc-fn" x="290" y="285" width="90" height="30" rx="15"/>
+<text class="dc-code" x="335" y="304" text-anchor="middle">find_by_slug</text>
+<rect class="dc-table" x="125" y="60" width="130" height="320" rx="8"/>
+<text class="dc-title" x="190" y="90" text-anchor="middle">Event</text>
+<line class="dc-rule" x1="125" y1="102" x2="255" y2="102"/>
+<text class="dc-code" x="136" y="120">title</text>
+<text class="dc-code" x="136" y="144">description</text>
+<text class="dc-code" x="136" y="168">start</text>
+<text class="dc-code" x="136" y="192">duration_minutes</text>
+<text class="dc-code" x="136" y="216">cancelled</text>
+<text class="dc-code" x="136" y="240">slug</text>
+<text class="dc-code" x="136" y="264">status</text>
+<text class="dc-code" x="136" y="288">rejection_reason</text>
+<text class="dc-code" x="136" y="312">author_id</text>
+<text class="dc-code" x="136" y="336">reviewer_id</text>
+<line class="dc-divider" x1="400" y1="20" x2="400" y2="390"/>
+<text class="dc-heading" x="655" y="30" text-anchor="middle">By behaviour: isolated modules</text>
+<rect class="dc-web" x="425" y="48" width="460" height="40" rx="8"/>
+<text class="dc-title" x="655" y="73" text-anchor="middle">Web layer</text>
+<line class="dc-link" x1="490" y1="88" x2="490" y2="128" marker-end="url(#dc-arrowhead)"/>
+<rect class="dc-module" x="425" y="130" width="130" height="125" rx="8"/>
+<text class="dc-title" x="490" y="158" text-anchor="middle">Submissions</text>
+<text class="dc-code" x="490" y="182" text-anchor="middle">submit</text>
+<text class="dc-code" x="490" y="198" text-anchor="middle">accept</text>
+<text class="dc-code" x="490" y="214" text-anchor="middle">reject</text>
+<line class="dc-link" x1="490" y1="255" x2="490" y2="290"/>
+<rect class="dc-table" x="425" y="290" width="130" height="110" rx="8"/>
+<text class="dc-title" x="490" y="311" text-anchor="middle">Submission</text>
+<line class="dc-rule" x1="425" y1="320" x2="555" y2="320"/>
+<text class="dc-code" x="437" y="337">status</text>
+<text class="dc-code" x="437" y="353">rejection_reason</text>
+<text class="dc-code" x="437" y="369">reviewer_id</text>
+<line class="dc-link" x1="655" y1="88" x2="655" y2="128" marker-end="url(#dc-arrowhead)"/>
+<rect class="dc-module" x="590" y="130" width="130" height="125" rx="8"/>
+<text class="dc-title" x="655" y="158" text-anchor="middle">Publishing</text>
+<text class="dc-code" x="655" y="182" text-anchor="middle">publish</text>
+<text class="dc-code" x="655" y="198" text-anchor="middle">cancel</text>
+<text class="dc-code" x="655" y="214" text-anchor="middle">search</text>
+<text class="dc-code" x="655" y="230" text-anchor="middle">fetch_by_id</text>
+<line class="dc-link" x1="655" y1="255" x2="655" y2="290"/>
+<rect class="dc-table" x="590" y="290" width="130" height="110" rx="8"/>
+<text class="dc-title" x="655" y="311" text-anchor="middle">Event</text>
+<line class="dc-rule" x1="590" y1="320" x2="720" y2="320"/>
+<text class="dc-code" x="602" y="337">title</text>
+<text class="dc-code" x="602" y="353">start</text>
+<text class="dc-code" x="602" y="369">author_id</text>
+<text class="dc-code" x="602" y="385">cancelled</text>
+<line class="dc-link" x1="820" y1="88" x2="820" y2="128" marker-end="url(#dc-arrowhead)"/>
+<rect class="dc-module" x="755" y="130" width="130" height="125" rx="8"/>
+<text class="dc-title" x="820" y="158" text-anchor="middle">Slugs</text>
+<text class="dc-code" x="820" y="182" text-anchor="middle">assign</text>
+<text class="dc-code" x="820" y="198" text-anchor="middle">get_id_by_slug</text>
+<line class="dc-link" x1="820" y1="255" x2="820" y2="290"/>
+<rect class="dc-table" x="755" y="290" width="130" height="110" rx="8"/>
+<text class="dc-title" x="820" y="311" text-anchor="middle">Slug</text>
+<line class="dc-rule" x1="755" y1="320" x2="885" y2="320"/>
+<text class="dc-code" x="767" y="337">slug</text>
+<text class="dc-code" x="767" y="353">event_id</text>
+<line class="dc-link" x1="555" y1="200" x2="588" y2="200" marker-end="url(#dc-arrowhead)"/>
+</svg>

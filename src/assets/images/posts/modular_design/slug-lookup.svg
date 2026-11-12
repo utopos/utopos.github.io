@@ -1,0 +1,57 @@
+<svg viewBox="0 0 800 440" class="slug-seq" width="800" height="440" role="img" aria-labelledby="sq-title sq-desc" xmlns="http://www.w3.org/2000/svg">
+<title id="sq-title">Fetching an event page by its slug</title>
+<desc id="sq-desc">A visitor requests /events/2026/10/26/elixir-meetup. The web UI calls Slugs.get_id_by_slug with the slug and gets back the event id. It then calls Publishing.fetch_by_id with that id and gets back the event, which it renders as the event page. Slugs and Publishing never call each other; the web UI connects them.</desc>
+<style>
+.slug-seq text { font-family: Figtree, system-ui, sans-serif; fill: #0e1117; }
+.slug-seq .bg { fill: #f3f3f3; }
+.slug-seq .module { fill: #fdff6b; stroke: #0e1117; stroke-width: 2; }
+.slug-seq .actor { fill: #ffffff; stroke: #575e69; stroke-width: 1.5; }
+.slug-seq .web { fill: #ffffff; stroke: #575e69; stroke-width: 1.5; stroke-dasharray: 6 4; }
+.slug-seq .name { font-size: 15px; font-weight: 700; }
+.slug-seq .life { stroke: #575e69; stroke-width: 1.5; stroke-dasharray: 3 5; }
+.slug-seq .act { fill: #ffffff; stroke: #0e1117; stroke-width: 1.5; }
+.slug-seq .call { stroke: #0e1117; stroke-width: 1.8; fill: none; }
+.slug-seq .ret { stroke: #0e1117; stroke-width: 1.5; stroke-dasharray: 6 4; fill: none; }
+.slug-seq .code { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px; }
+.slug-seq .code-sm { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; }
+.slug-seq .step { font-size: 12px; font-weight: 700; fill: #f3f3f3; }
+.slug-seq .step-dot { fill: #0e1117; }
+.slug-seq .note { fill: #ffffff; stroke: #0e1117; stroke-width: 1; }
+.slug-seq .note-text { font-size: 13px; }
+.slug-seq .head { fill: #0e1117; }
+</style>
+<defs>
+<marker id="sq-a" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker>
+<marker id="sq-o" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#0e1117" stroke-width="1.5"/></marker>
+</defs>
+<rect class="bg" x="0" y="0" width="800" height="440"/>
+<line class="life" x1="70" y1="64" x2="70" y2="370"/>
+<line class="life" x1="330" y1="64" x2="330" y2="370"/>
+<line class="life" x1="530" y1="64" x2="530" y2="370"/>
+<line class="life" x1="720" y1="64" x2="720" y2="370"/>
+<rect class="actor" x="10.0" y="20" width="120" height="44" rx="22"/>
+<text class="name" x="70" y="47" text-anchor="middle">Visitor</text>
+<rect class="web" x="270.0" y="20" width="120" height="44" rx="10"/>
+<text class="name" x="330" y="47" text-anchor="middle">Web UI</text>
+<rect class="module" x="470.0" y="20" width="120" height="44" rx="10"/>
+<text class="name" x="530" y="47" text-anchor="middle">Slugs</text>
+<rect class="module" x="660.0" y="20" width="120" height="44" rx="10"/>
+<text class="name" x="720" y="47" text-anchor="middle">Publishing</text>
+<rect class="act" x="324" y="100" width="12" height="245"/>
+<rect class="act" x="524" y="150" width="12" height="45"/>
+<rect class="act" x="714" y="245" width="12" height="45"/>
+<line class="call" x1="70" y1="100" x2="324" y2="100" marker-end="url(#sq-a)"/>
+<text class="code-sm" x="205.0" y="92" text-anchor="middle">GET /events/2026/10/26/elixir-meetup</text>
+<line class="call" x1="336" y1="150" x2="524" y2="150" marker-end="url(#sq-a)"/>
+<text class="code" x="438.0" y="142" text-anchor="middle">get_id_by_slug(slug)</text>
+<line class="ret" x1="524" y1="195" x2="336" y2="195" marker-end="url(#sq-o)"/>
+<text class="code" x="438.0" y="187" text-anchor="middle">event_id</text>
+<line class="call" x1="336" y1="245" x2="714" y2="245" marker-end="url(#sq-a)"/>
+<text class="code" x="625" y="237" text-anchor="middle">fetch_by_id(event_id)</text>
+<line class="ret" x1="714" y1="290" x2="336" y2="290" marker-end="url(#sq-o)"/>
+<text class="code" x="625" y="282" text-anchor="middle">%Event{}</text>
+<line class="ret" x1="324" y1="340" x2="70" y2="340" marker-end="url(#sq-o)"/>
+<text class="note-text" x="205.0" y="332" text-anchor="middle">event page</text>
+<rect class="note" x="420" y="385" width="360" height="40" rx="6"/>
+<text class="note-text" x="600" y="410" text-anchor="middle">Slugs and Publishing never call each other.</text>
+</svg>

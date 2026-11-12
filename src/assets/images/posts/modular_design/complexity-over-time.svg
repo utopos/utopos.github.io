@@ -1,0 +1,33 @@
+<svg viewBox="0 0 800 370" class="cx" width="800" height="370" role="img" aria-labelledby="cx-title cx-desc" xmlns="http://www.w3.org/2000/svg">
+<title id="cx-title">Complexity over time</title>
+<desc id="cx-desc">A conceptual chart of complexity against time. Essential complexity grows steadily as the system grows. Total complexity curves upwards above it, and the widening gap between the two is accidental complexity.</desc>
+<style>
+.cx text { font-family: Figtree, system-ui, sans-serif; fill: #0e1117; }
+.cx .bg { fill: #f3f3f3; }
+.cx .axis { stroke: #575e69; stroke-width: 1.5; fill: none; }
+.cx .axis-label { font-size: 13px; fill: #575e69; }
+.cx .ess { fill: #d9d9d9; }
+.cx .ess-edge { stroke: #575e69; stroke-width: 1.5; fill: none; }
+.cx .nouns { stroke: #c2410c; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+.cx .lbl { font-size: 13px; font-weight: 600; }
+.cx .lbl-muted { font-size: 13px; fill: #575e69; }
+.cx .ann { stroke: #0e1117; stroke-width: 1.2; fill: none; }
+.cx .head { fill: #0e1117; }
+</style>
+<defs>
+<marker id="cx-a" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker>
+</defs>
+<rect class="bg" x="0" y="0" width="800" height="370"/>
+<path class="ess" d="M80,330 L80.0,307.6 L89.3,305.6 L98.7,303.7 L108.0,301.7 L117.3,299.8 L126.7,297.8 L136.0,295.8 L145.3,293.9 L154.7,291.9 L164.0,290.0 L173.3,288.0 L182.7,286.0 L192.0,284.1 L201.3,282.1 L210.7,280.2 L220.0,278.2 L229.3,276.2 L238.7,274.3 L248.0,272.3 L257.3,270.4 L266.7,268.4 L276.0,266.4 L285.3,264.5 L294.7,262.5 L304.0,260.6 L313.3,258.6 L322.7,256.6 L332.0,254.7 L341.3,252.7 L350.7,250.8 L360.0,248.8 L369.3,246.8 L378.7,244.9 L388.0,242.9 L397.3,241.0 L406.7,239.0 L416.0,237.0 L425.3,235.1 L434.7,233.1 L444.0,231.2 L453.3,229.2 L462.7,227.2 L472.0,225.3 L481.3,223.3 L490.7,221.4 L500.0,219.4 L509.3,217.4 L518.7,215.5 L528.0,213.5 L537.3,211.6 L546.7,209.6 L556.0,207.6 L565.3,205.7 L574.7,203.7 L584.0,201.8 L593.3,199.8 L602.7,197.8 L612.0,195.9 L621.3,193.9 L630.7,192.0 L640.0,190.0 L640,330 Z"/>
+<path class="ess-edge" d="M80.0,307.6 L89.3,305.6 L98.7,303.7 L108.0,301.7 L117.3,299.8 L126.7,297.8 L136.0,295.8 L145.3,293.9 L154.7,291.9 L164.0,290.0 L173.3,288.0 L182.7,286.0 L192.0,284.1 L201.3,282.1 L210.7,280.2 L220.0,278.2 L229.3,276.2 L238.7,274.3 L248.0,272.3 L257.3,270.4 L266.7,268.4 L276.0,266.4 L285.3,264.5 L294.7,262.5 L304.0,260.6 L313.3,258.6 L322.7,256.6 L332.0,254.7 L341.3,252.7 L350.7,250.8 L360.0,248.8 L369.3,246.8 L378.7,244.9 L388.0,242.9 L397.3,241.0 L406.7,239.0 L416.0,237.0 L425.3,235.1 L434.7,233.1 L444.0,231.2 L453.3,229.2 L462.7,227.2 L472.0,225.3 L481.3,223.3 L490.7,221.4 L500.0,219.4 L509.3,217.4 L518.7,215.5 L528.0,213.5 L537.3,211.6 L546.7,209.6 L556.0,207.6 L565.3,205.7 L574.7,203.7 L584.0,201.8 L593.3,199.8 L602.7,197.8 L612.0,195.9 L621.3,193.9 L630.7,192.0 L640.0,190.0"/>
+<path class="nouns" d="M80.0,296.4 L89.3,294.4 L98.7,292.4 L108.0,290.3 L117.3,288.2 L126.7,286.1 L136.0,283.8 L145.3,281.6 L154.7,279.2 L164.0,276.8 L173.3,274.4 L182.7,271.8 L192.0,269.2 L201.3,266.6 L210.7,263.8 L220.0,261.0 L229.3,258.2 L238.7,255.2 L248.0,252.2 L257.3,249.1 L266.7,246.0 L276.0,242.7 L285.3,239.4 L294.7,236.0 L304.0,232.6 L313.3,229.0 L322.7,225.4 L332.0,221.7 L341.3,218.0 L350.7,214.1 L360.0,210.2 L369.3,206.2 L378.7,202.1 L388.0,197.9 L397.3,193.6 L406.7,189.3 L416.0,184.9 L425.3,180.4 L434.7,175.8 L444.0,171.1 L453.3,166.4 L462.7,161.5 L472.0,156.6 L481.3,151.6 L490.7,146.5 L500.0,141.3 L509.3,136.0 L518.7,130.7 L528.0,125.2 L537.3,119.7 L546.7,114.0 L556.0,108.3 L565.3,102.5 L574.7,96.6 L584.0,90.6 L593.3,84.6 L602.7,78.4 L612.0,72.1 L621.3,65.8 L630.7,59.3 L640.0,52.8"/>
+<path class="axis" d="M80,35 V330 H660" marker-start="url(#cx-a)" marker-end="url(#cx-a)"/>
+<text class="axis-label" x="660" y="354" text-anchor="end">time and system size</text>
+<text class="axis-label" x="66" y="90" text-anchor="end" transform="rotate(-90 66 90)">complexity</text>
+<circle cx="640" cy="52.8" r="4" fill="#c2410c"/>
+<text class="lbl" x="652" y="57.8">total complexity</text>
+<text class="lbl-muted" x="388" y="312" text-anchor="middle">essential complexity</text>
+<line class="ann" x1="528.0" y1="210.5" x2="528.0" y2="129.2" marker-start="url(#cx-a)" marker-end="url(#cx-a)"/>
+<text class="lbl" x="504.0" y="149.4" text-anchor="end">accidental</text>
+<text class="lbl" x="504.0" y="165.4" text-anchor="end">complexity</text>
+</svg>
