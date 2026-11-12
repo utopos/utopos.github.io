@@ -16,7 +16,6 @@ description: "Why a single, consistent domain model is an illusion, and how Boun
 
 I wish more aspects of life operated on this seamless and graceful principle. Can it work also for Domain modelling though?
 
-## Table of contents
 
 ## Embracing the Chaos
 

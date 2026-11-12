@@ -18,7 +18,6 @@ This article aims to explain the DDD Strategic Design concepts of DDD with an ex
 
 The knowledge will set the foundation for further exploration of DDD Tactical Design patterns and implementation details. These will be covered in my other articles.
 
-## Table of contents
 
 ## Strategic Design — Succinct
 
