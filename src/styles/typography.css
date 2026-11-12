@@ -127,23 +127,31 @@
 
   /* ===== Code Blocks & Syntax Highlighting ===== */
   .astro-code {
-    @apply outline-border flex border bg-(--shiki-light-bg) text-(--shiki-light) [&_span]:text-(--shiki-light);
+    @apply outline-border flex border bg-(--shiki-dark-bg) text-(--shiki-dark) [&_span]:text-(--shiki-dark);
+  }
+
+  /* Two code blocks side by side on large screens */
+  .code-pair {
+    @apply my-6 grid gap-4 lg:grid-cols-2;
+    .astro-code {
+      @apply my-0 min-w-0;
+    }
   }
 
   /* Styles for Shiki transformers */
   /* https://shiki.style/packages/transformers */
   .astro-code {
     .line.diff.add {
-      @apply relative inline-block w-full bg-green-400/20 before:absolute before:-left-3 before:text-green-500 before:content-['+'];
+      @apply relative inline-block w-full bg-green-400/20 before:absolute before:-left-3 before:text-green-400 before:content-['+'];
     }
     .line.diff.remove {
-      @apply relative inline-block w-full bg-red-500/20 before:absolute before:-left-3 before:text-red-500 before:content-['-'];
+      @apply relative inline-block w-full bg-red-500/20 before:absolute before:-left-3 before:text-red-400 before:content-['-'];
     }
     .line.highlighted {
-      @apply inline-block w-full bg-slate-400/20;
+      @apply relative inline-block w-full bg-amber-400/25 before:absolute before:-left-3 before:text-amber-400 before:content-['~'];
     }
     .highlighted-word {
-      @apply border-border rounded-sm border px-0.5 py-px;
+      @apply rounded-sm border border-slate-400/50 bg-slate-400/20 px-0.5 py-px;
     }
   }
 }
